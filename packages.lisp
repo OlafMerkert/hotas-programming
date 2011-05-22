@@ -22,4 +22,26 @@
 
 (defpackage #:dcs-commands
   (:use #:cl #:ol-utils
-        #:lua-parser))
+        #:lua-parser)
+  (:export #:load-config
+           #:defconfun
+           #:modifier-list
+           #:command-list
+           #:grouped-command-list
+           #:*modifiers*
+           #:translate-modifier
+           #:translate-modifiers
+           #:sort-modifiers
+           #:sorted-commands
+           #:command-name
+           #:command-combo
+           #:command-combo-emacs))
+
+(defpackage #:command-table
+  (:use #:cl #:ol-utils
+        #:dcs-commands)
+  (:export #:command-table-pdf))
+
+(defpackage #:logi-commands
+  (:use #:cl #:ol-utils
+        #:dcs-commands))

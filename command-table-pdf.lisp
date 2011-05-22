@@ -1,4 +1,4 @@
-(in-package #:dcs-commands)
+(in-package #:command-table)
 
 (defparameter *text-font* (pdf:get-font "times-roman"))
 (defparameter *command-font* (pdf:get-font "courier"))
