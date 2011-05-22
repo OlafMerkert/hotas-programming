@@ -1,6 +1,7 @@
 (in-package #:tokenizer)
 
 (export '(token token-type token-value equals token-p
+          make-token
           tokenize
           word integer string delim))
 

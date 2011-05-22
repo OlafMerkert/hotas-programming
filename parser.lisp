@@ -40,7 +40,8 @@
 
 (defun sequence-to-matcher (types)
   (with-gensyms!
-    (cond ((and types (symbolp (car types)))
+    (cond ((null types) t)
+          ((symbolp (car types))
            `(if-let* ((,g!result (,(symb 'parse- (car types))))
                       ,@(if (cdr types)
                             `((,g!rest ,(sequence-to-matcher (cdr types))))))
@@ -48,7 +49,7 @@
               ,(if (cdr types)
                    `(cons ,g!result ,g!rest)
                    g!result)))
-          ((and types (make-token-p (car types)))
+          ((make-token-p (car types))
            (destructuring-bind (mt &key type value) (car types)
              (declare (ignore mt))
              `(if (and (next-token)
@@ -62,7 +63,7 @@
                       ,(if (cdr types)
                            `(cons ,value ,g!rest)
                            value))))))
-          ((null types) t))))
+          (t (error "Types = ~A" types)))))
 
 ;;; figure out how to backtrack
 
