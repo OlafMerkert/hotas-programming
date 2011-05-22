@@ -42,6 +42,7 @@
              (translate-modifiers :dcs :logi (cdr it)))))
 
 (defun build-command (id command &optional pause)
+  ;; pause ist in Millisekunden
   (cl-who:with-html-output-to-string (stream)
    (let ((combo (command-combo-logi command)))
      (cl-who:htm
@@ -106,7 +107,43 @@
        :|RefIdSE| -1
        :|RefIdSW| -1))))
 
-;;; TODO zonenbefehle
+(defparameter *zone-band* (cons 0 65535))
+
+(defun build-zone-command (id name divider commands)
+  (let* ((divider (mapcar (lambda (x) (floor (* x (cdr *zone-band*))))
+                          divider))
+         (lower (cons (car *zone-band*)
+                                 divider))
+         (upper (append1 divider (cdr *zone-band*)))
+         (commands (mapcar (lambda (x) (if x x -1)) commands)))
+    (cl-who:with-html-output-to-string (stream)
+      (cl-who:htm
+       (:|BandCommand| :|Id| id :|Name| name
+         (loop for c in commands
+              and l in lower
+              and u in upper
+              do (cl-who:htm (:|Band| :|RefId| c
+                               :|Min| l :|Max| u))))))))
+
+(defun build-profile-skeleton (&key (name "Unnamed")
+                               (author "Unknown")
+                               commands
+                               assignments
+                               special-options)
+  (cl-who:with-html-output-to-string (stream)
+    (format stream "<?xml version=\"1.0\" encoding=\"utf-8\"?>~%")
+    (cl-who:htm
+     (:|GameProfile| :|xmlns| "http:|//www.logitech.com/schemas/2009/gaming/game_profile"
+       (:|Profile| :|Publisher| "cl-profile-generator" :|Installed| "false" :|Author| author
+         (:|Name| name)
+         (:|Macros|
+           (format stream "~{~A~%~}" commands))
+         (format stream "~{~A~%~}" assignments)
+         (:|DeviceSpecialOptions|
+           (format stream "~{~A~%~}" special-options)))))))
+
 ;;; TODO Befehlszuweisung
 ;;; TODO Achseneinstellungen
 ;;; TODO FFB Einstellungen
+;;; TODO Modus beachten
+;;; TODO was bedeutet Mapping??
