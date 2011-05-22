@@ -4,6 +4,7 @@
 (defparameter *command-font* (pdf:get-font "courier"))
 (defparameter *test-output* #P "/home/olaf/test-output.pdf")
 
+;;; todo put a list of modifiers at the start
 (defconfun command-table-pdf (file &optional (all nil))
   (let (row-parity
         content)

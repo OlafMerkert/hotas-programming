@@ -28,7 +28,8 @@
   (list
    (list :dcs "RWin" "LWin" "RCtrl" "LCtrl" "RAlt" "LAlt" "RShift" "LShift")
    (list :emacs "rW-" "W-" "rC-" "C-" "rM-" "M-" "rS-" "S-")
-   (list :logi "RGUI" "LGUI" "RCTRL" "LCTRL" "RALT" "LALT" "RSHIFT" "LSHIFT")))
+   (list :logi "RGUI" "LGUI" "RCTRL" "LCTRL" "RALT" "LALT" "RSHIFT" "LSHIFT")
+   (list :human "Right Windows" "Left Windows" "Right Control" "Left Control" "Right Alt" "Left Alt" "Right Shift" "Left Shift")))
 
 (defun translate-modifier (from to mod)
   (let ((i (position mod (assoc from *modifiers*) :test #'equal)))
