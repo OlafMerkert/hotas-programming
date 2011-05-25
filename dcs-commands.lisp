@@ -76,3 +76,49 @@
              (mods (sort-modifiers :emacs (translate-modifiers :dcs :emacs (cdr it)))))
          (format nil "~{~A~}~A" mods key))
        ""))
+
+(defconfun find-command-fuzzy (search-terms)
+  (let* ((search-terms (mklist search-terms))
+         (combined (format nil "~{~A~^ ~}" search-terms))
+         (filtered-commands
+          (remove-if-not
+           (lambda (x)
+             (let ((name (command-name x)))
+              (every (lambda (y)
+                       (search y name :test #'char-equal))
+                     search-terms)))
+           (command-list config))))
+    (sort filtered-commands #'<
+           :key (lambda (x)
+                  (levenshtein:distance
+                   (string-downcase combined)
+                   (string-downcase (command-name x)))))))
+
+(defun most-simple-assigned (commands)
+  (let ((assigned (remove-if-not (lambda (x) (assoc1 :combos x)) commands)))
+    (sort assigned #'<
+          :key (lambda (x) (length (assoc1 :reformers
+                                           (car (assoc1 :combos x))))))))
+
+(defconfun find-best-match% (search-terms)
+  (let ((finds (find-command-fuzzy search-terms config)))
+    (if (null finds)
+        (error "Search for ~{'~S'~^, ~} does not match anything."
+               (mklist search-terms))
+        (let ((assigned (most-simple-assigned finds)))
+          (format t "Best search result: ~S~:[ (Not bound)~;~]~%"
+                  (command-name (first finds))
+                  (command-combo (first finds)))
+          (if (null assigned)
+              (error "Search for ~{~S~^, ~} does not match anything with bindings."
+                     (mklist search-terms))
+              (progn
+                (format t "Best bound  result: ~S~%"
+                        (command-name (first assigned)))
+                (when (rest assigned)
+                 (format t " Other bound results:~{~%   ~S~}"
+                         (mapcar #'command-name (rest assigned))))
+                (first assigned)))))))
+
+(defmacro find-best-match (&rest search-terms)
+  `(find-best-match% (list ,@search-terms)))

@@ -1,7 +1,8 @@
 (defsystem "hotas"
   :depends-on (:ol-utils
                :cl-typesetting
-               :cl-who)
+               :cl-who
+               :levenshtein)
   :serial t
   :components
   ((:file "packages")

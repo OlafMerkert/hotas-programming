@@ -35,7 +35,11 @@
            #:sorted-commands
            #:command-name
            #:command-combo
-           #:command-combo-emacs))
+           #:command-combo-emacs
+           #:find-command-fuzzy
+           #:most-simple-assigned
+           #:find-best-match%
+           #:find-best-match))
 
 (defpackage #:command-table
   (:use #:cl #:ol-utils
