@@ -147,11 +147,13 @@
 ;;; TODO was bedeutet Mapping??
 
 (progn
-  (defvar *joystick-buttons* #1=(make-hash-table))
-  (defvar *joystick-bindings* #1#)
+  (defvar *joystick-buttons* (make-hash-table))
+  (defvar *joystick-bindings* nil)
   (defun clear-joysticks ()
-    (setf *joystick-buttons* #1#
-          *joystick-bindings* #1#)))
+    (clrhash *joystick-buttons*)
+    (setf *joystick-bindings* nil))
+  (defun clear-bindings ()
+    (setf *joystick-bindings* nil)))
 
 (defclass joystick-input ()
   ((model :accessor model
@@ -160,6 +162,14 @@
                   :initarg  :functionality)
    (nr :accessor nr
        :initarg  :nr)))
+
+(defmacro equality (a b test &rest predicates)
+  `(and ,@(mapcar #2`(,test ,a1 ,a2)
+                  (mapcar #`(,a1 ,a) predicates)
+                  (mapcar #`(,a1 ,b) predicates))))
+
+(defmethod equals ((a joystick-input) (b joystick-input))
+  (equality a b eql model functionality nr))
 
 (defparameter *default-mode* (list 1 2 3))
 
@@ -176,18 +186,28 @@
           :initform nil)))
 
 (defmethod initialize-instance :after ((input bound-joystick-input) &key)
+  (with-slots (mode) input
+    (setf mode (mklist mode)))
   (bind-commands input))
 
+(defmacro def-functionality (class func)
+  `(defmethod functionality ((obj ,class))
+     (declare (ignore obj))
+     ',func))
 
 (defclass button (bound-joystick-input)
   ((action :accessor action
            :initarg  :action)))
+
+(def-functionality button button)
 
 (defclass axis (bound-joystick-input)
   ((action-min :accessor action-min
                :initarg  :min)
    (action-max :accessor action-max
                :initarg  :max)))
+
+(def-functionality axis axis)
 
 (defclass hat (bound-joystick-input)
   ((action-n :accessor action-n
@@ -199,11 +219,23 @@
    (action-e :accessor action-e
              :initarg  :e)))
 
-(defclass zone (bound-joystick-input)
+(def-functionality hat hat)
+
+(defclass combined-joystick-input (bound-joystick-input)
+  ((actions :accessor actions
+            :initarg :actions)))
+
+(defclass zone (combined-joystick-input)
+  ((positions :accessor positions
+              :initarg :positions)))
+
+(def-functionality zone axis)
+
+(defclass cycle (combined-joystick-input)
   ())
 
-;;; TODO figure out how to handle zone commands (likely a different command
-;;; than bind)
+(def-functionality cycle button)
+
 
 (defmacro defjoystick (name &key model axis buttons hats)
   (declare (ignorable name))
@@ -245,15 +277,70 @@
                 x))
           (collect k :key #'stringp :test (lambda (x y) (and x y)))))
 
+(defun add-js-binding (obj)
+  (let ((modes (mode obj))
+        (other-bindings *joystick-bindings*))
+    (dolist (o other-bindings)
+      (with-slots (mode) o
+        (setf mode (set-difference mode modes))))
+    (setf *joystick-bindings*
+          (cons obj
+                (remove-if-not #'mode other-bindings)))))
+
+(defmacro set-js-binding (input object)
+  (declare (ignorable input))
+  `(add-js-binding ,object))
+
+(defun bind-simple-command% (input js-input commands)
+  `(progn
+     (format t ,(mkstr "* Binding " input " ..~%"))
+     (set-js-binding ,input
+                     (make-instance ',(functionality js-input)
+                                    :model ,(model js-input)
+                                    :nr ,(nr js-input)
+                                    ,@commands))))
+
+(defun split-at (fn list)
+  (let* ((i (position-if fn list))
+         (first (subseq list 0 i))
+         (rest (subseq list i)))
+    (values first rest)))
+
+(defun bind-zone-command% (input js-input commands)
+  (unless (eql (functionality js-input) 'axis)
+    (error "Zone Commands only work for axis."))
+  (multiple-value-bind (zones rest) (split-at #'keywordp commands)
+   (multiple-value-bind (odds evens) (splitn zones)
+     `(progn
+        (format t ,(mkstr "* Binding zones for " input " ..~%"))
+        (set-js-binding ,input
+                        (make-instance 'zone
+                                       :model ,(model js-input)
+                                       :nr ,(nr js-input)
+                                       :actions (list ,@odds)
+                                       :positions (list ,@evens)
+                                       ,@rest))))))
+
+(defun bind-cycle-command% (input js-input commands)
+  (unless (eql (functionality js-input) 'button)
+    (error "Cycle Commands only work for buttons."))
+  (multiple-value-bind (actions rest) (split-at #'keywordp commands)
+   `(progn
+      (format t ,(mkstr "* Binding cycle for " input " ..~%"))
+      (set-js-binding ,input
+                      (make-instance 'cycle
+                                     :model ,(model js-input)
+                                     :nr ,(nr js-input)
+                                     :actions (list ,@actions)
+                                     ,@rest)))))
+
 (defmacro bind (input &rest commands)
-  (let ((js-input (gethash input *joystick-buttons*)))
-    `(progn
-       (format t ,(mkstr "* Binding " input " ..~%"))
-       (setf (gethash ',input *joystick-bindings*)
-             (make-instance ',(functionality js-input)
-                            :model ,(model js-input)
-                            :nr ,(nr js-input)
-                            ,@(replace-keywords (collect-strings commands)))))))
+  (let ((js-input (gethash input *joystick-buttons*))
+        (commands (replace-keywords (collect-strings commands))))
+    (case (first commands)
+      (:zone (bind-zone-command% input js-input (rest commands)))
+      (:cycle (bind-cycle-command% input js-input (rest commands)))
+      (t (bind-simple-command% input js-input commands)))))
 
 (defvar *command-counter* 0)
 
@@ -265,8 +352,8 @@
   (defvar *generated-commands/pause* #1#)
 
   (defun clear-generated-commands ()
-    (setf *generated-commands* #1#
-          *generated-commands/pause* #1#)))
+    (clrhash *generated-commands*)
+    (clrhash *generated-commands/pause*)))
 
 (defmethod bind-command ((input bound-joystick-input) command)
   (let ((name (command-name command)))
@@ -293,3 +380,14 @@
   (def-bind-commands button action)
   (def-bind-commands axis action-min action-max)
   (def-bind-commands hat action-n action-s action-w action-e))
+
+(defmethod bind-commands ((input combined-joystick-input))
+  (with-slots (actions) input
+    (loop for action in actions
+       and j from 0
+       unless (typep action 'fixnum)
+       do
+         (format t "** Binding Action ~D~%" j)
+         (let ((command (find-best-match% action)))
+           (setf (nth j actions)
+                 (bind-command input command))))))

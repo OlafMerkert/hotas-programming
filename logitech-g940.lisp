@@ -18,3 +18,11 @@
 
 (bind mini-x :left "Trim" "Left" "Wing" :right "Trim" "Right" "Wing")
 (bind mini-y :up "Trim" "Nose" "Down" :down "Trim" "Nose" "Up")
+
+(bind rotary-right
+      :zone "pinky" "aft"
+      1/3 "pinky" "center"
+      2/3 "pinky" "forw"
+      :pause t)
+
+(bind side :cycle ("CMS" "Forw") ("CMS" "Aft") :mode 3)
