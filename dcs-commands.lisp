@@ -106,17 +106,17 @@
         (error "Search for ~{'~S'~^, ~} does not match anything."
                (mklist search-terms))
         (let ((assigned (most-simple-assigned finds)))
-          (format t "Best search result: ~S~:[ (Not bound)~;~]~%"
+          (format t "    Best search result: ~S~:[ (Not bound)~;~]~%"
                   (command-name (first finds))
                   (command-combo (first finds)))
           (if (null assigned)
               (error "Search for ~{~S~^, ~} does not match anything with bindings."
                      (mklist search-terms))
               (progn
-                (format t "Best bound  result: ~S~%"
+                (format t "*** Best bound result: ~S~%"
                         (command-name (first assigned)))
                 (when (rest assigned)
-                 (format t " Other bound results:~{~%   ~S~}"
+                 (format t "    Other bound results:~{~%    + ~S~}~%"
                          (mapcar #'command-name (rest assigned))))
                 (first assigned)))))))
 

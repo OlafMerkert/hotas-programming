@@ -16,5 +16,5 @@
     :model 62
     :axis (right-brake left-brake z))
 
-(bind mini-x :left "Trim Left" :right "Trim Right")
-(bind mini-y :up "Trim Down" :down "Trim Up")
+(bind mini-x :left "Trim" "Left" "Wing" :right "Trim" "Right" "Wing")
+(bind mini-y :up "Trim" "Nose" "Down" :down "Trim" "Nose" "Up")

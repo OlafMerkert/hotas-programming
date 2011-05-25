@@ -1,8 +1,8 @@
 (in-package #:logi-commands)
 
 (eval-when (:compile-toplevel :load-toplevel :execute)
- (setf cl-who:*downcase-tokens-p*      nil
-       cl-who:*html-empty-tag-aware-p* nil))
+  (setf cl-who:*downcase-tokens-p*      nil
+        cl-who:*html-empty-tag-aware-p* nil))
 
 (defparameter *logitech-key-conversions*
   '(("["      "LBRACKET")
@@ -44,39 +44,39 @@
 (defun build-command (id command &optional pause)
   ;; pause ist in Millisekunden
   (cl-who:with-html-output-to-string (stream)
-   (let ((combo (command-combo-logi command)))
-     (cl-who:htm
-      (:|Command| :|Id| id :|Name| (command-name command)
-        (dolist (key (reverse combo))
-          (cl-who:htm
-           (:|Event| :|Type| "Key"
-             :|Keyname| key :|Up| "false")))
-        (when pause
-          (cl-who:htm
-           (:|Event| :|Type| "Pause" :|Time| pause)))
-        (dolist (key combo)
-          (cl-who:htm
-           (:|Event| :|Type| "Key"
-             :|Keyname| key :|Up| "true"))))))))
+    (let ((combo (command-combo-logi command)))
+      (cl-who:htm
+       (:|Command| :|Id| id :|Name| (command-name command)
+         (dolist (key (reverse combo))
+           (cl-who:htm
+            (:|Event| :|Type| "Key"
+              :|Keyname| key :|Up| "false")))
+         (when pause
+           (cl-who:htm
+            (:|Event| :|Type| "Pause" :|Time| pause)))
+         (dolist (key combo)
+           (cl-who:htm
+            (:|Event| :|Type| "Key"
+              :|Keyname| key :|Up| "true"))))))))
 
 (defun build-command/pause (id command &optional (pause 100))
   (build-command id command pause))
 
 (defun build-keystroke (id command)
   (cl-who:with-html-output-to-string (stream)
-   (let ((combo (command-combo-logi command)))
-     (cl-who:htm
-      (:|Command| :|Id| id :|Name| (command-name command)
-        :|IsKeyStroke| "true"
-        (dolist (key (reverse combo))
-          (cl-who:htm
-           (:|Event| :|Type| "Key"
-             :|Keyname| key :|Up| "false"
-             :|KeynameUndo| key))))))))
+    (let ((combo (command-combo-logi command)))
+      (cl-who:htm
+       (:|Command| :|Id| id :|Name| (command-name command)
+         :|IsKeyStroke| "true"
+         (dolist (key (reverse combo))
+           (cl-who:htm
+            (:|Event| :|Type| "Key"
+              :|Keyname| key :|Up| "false"
+              :|KeynameUndo| key))))))))
 
 (defun build-axis-command (id name min max)
   (unless min (setf min -1))
-   (unless max (setf max -1))
+  (unless max (setf max -1))
   (cl-who:with-html-output-to-string (stream)
     (cl-who:htm
      (:|AxisCommand| :|Id| id :|Name| name
@@ -111,17 +111,17 @@
   (let* ((divider (mapcar (lambda (x) (floor (* x (cdr *zone-band*))))
                           divider))
          (lower (cons (car *zone-band*)
-                                 divider))
+                      divider))
          (upper (append1 divider (cdr *zone-band*)))
          (commands (mapcar (lambda (x) (if x x -1)) commands)))
     (cl-who:with-html-output-to-string (stream)
       (cl-who:htm
        (:|BandCommand| :|Id| id :|Name| name
          (loop for c in commands
-              and l in lower
-              and u in upper
-              do (cl-who:htm (:|Band| :|RefId| c
-                               :|Min| l :|Max| u))))))))
+            and l in lower
+            and u in upper
+            do (cl-who:htm (:|Band| :|RefId| c
+                             :|Min| l :|Max| u))))))))
 
 (defun build-profile-skeleton (&key (name "Unnamed")
                                (author "Unknown")
@@ -146,8 +146,12 @@
 ;;; TODO Modus beachten
 ;;; TODO was bedeutet Mapping??
 
-(defparameter *joystick-buttons* (make-hash-table))
-(defparameter *joystick-bindings* (make-hash-table))
+(progn
+  (defvar *joystick-buttons* #1=(make-hash-table))
+  (defvar *joystick-bindings* #1#)
+  (defun clear-joysticks ()
+    (setf *joystick-buttons* #1#
+          *joystick-bindings* #1#)))
 
 (defclass joystick-input ()
   ((model :accessor model
@@ -170,6 +174,10 @@
    (pause :accessor pause
           :initarg  :pause
           :initform nil)))
+
+(defmethod initialize-instance :after ((input bound-joystick-input) &key)
+  (bind-commands input))
+
 
 (defclass button (bound-joystick-input)
   ((action :accessor action
@@ -211,10 +219,10 @@
              (def-func 'axis identifier nr))
            (def-hat (identifier nr)
              (def-func 'hat identifier nr)))
-   `(progn
-      ,@(mapcar #'def-axis axis (lrange axis))
-      ,@(mapcar #'def-button buttons (lrange buttons))
-      ,@(mapcar #'def-hat hats (lrange hats)))))
+    `(progn
+       ,@(mapcar #'def-axis axis (lrange axis))
+       ,@(mapcar #'def-button buttons (lrange buttons))
+       ,@(mapcar #'def-hat hats (lrange hats)))))
 
 (defparameter *keyword-map*
   '((:left :min)
@@ -230,13 +238,22 @@
                            x))
           k))
 
+(defun collect-strings (k)
+  (mapcar (lambda (x)
+            (if (and (consp x) (stringp (car x)))
+                `(list ,@x)
+                x))
+          (collect k :key #'stringp :test (lambda (x y) (and x y)))))
+
 (defmacro bind (input &rest commands)
   (let ((js-input (gethash input *joystick-buttons*)))
-   `(setf (gethash ',input *joystick-bindings*)
-          (make-instance ',(functionality js-input)
-                         :model ,(model js-input)
-                         :nr ,(nr js-input)
-                         ,@(replace-keywords commands)))))
+    `(progn
+       (format t ,(mkstr "* Binding " input " ..~%"))
+       (setf (gethash ',input *joystick-bindings*)
+             (make-instance ',(functionality js-input)
+                            :model ,(model js-input)
+                            :nr ,(nr js-input)
+                            ,@(replace-keywords (collect-strings commands)))))))
 
 (defvar *command-counter* 0)
 
@@ -244,12 +261,12 @@
   (incf *command-counter*))
 
 (progn
- (defvar *generated-commands* #1=(make-hash-table :test #'equal))
- (defvar *generated-commands/pause* #1#)
+  (defvar *generated-commands* #1=(make-hash-table :test #'equal))
+  (defvar *generated-commands/pause* #1#)
 
- (defun clear-generated-commands ()
-   (setf *generated-commands* #1#
-         *generated-commands/pause* #1#)))
+  (defun clear-generated-commands ()
+    (setf *generated-commands* #1#
+          *generated-commands/pause* #1#)))
 
 (defmethod bind-command ((input bound-joystick-input) command)
   (let ((name (command-name command)))
@@ -266,11 +283,13 @@
   `(defmethod bind-commands ((,input ,input))
      (with-slots (,@actions) ,input
        ,@(mapcar #`(unless (typep ,a1 'fixnum)
-                     (let ((command (find-best-match ,a1)))
+                     (format t ,(mkstr "** Binding " a1 "~%"))
+                     (let ((command (find-best-match% ,a1)))
                        (setf ,a1
                              (bind-command ,input command))))
                  actions))))
 
-(def-bind-commands button action)
-(def-bind-commands axis action-min action-max)
-(def-bind-commands hat action-n action-s action-w action-e)
+(progn
+  (def-bind-commands button action)
+  (def-bind-commands axis action-min action-max)
+  (def-bind-commands hat action-n action-s action-w action-e))
