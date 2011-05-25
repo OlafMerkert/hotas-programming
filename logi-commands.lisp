@@ -57,9 +57,7 @@
         (dolist (key combo)
           (cl-who:htm
            (:|Event| :|Type| "Key"
-             :|Keyname| key :|Up| "true")))
-      
-        )))))
+             :|Keyname| key :|Up| "true"))))))))
 
 (defun build-command/pause (id command &optional (pause 100))
   (build-command id command pause))
@@ -239,3 +237,40 @@
                          :model ,(model js-input)
                          :nr ,(nr js-input)
                          ,@(replace-keywords commands)))))
+
+(defvar *command-counter* 0)
+
+(defun next-command-id ()
+  (incf *command-counter*))
+
+(progn
+ (defvar *generated-commands* #1=(make-hash-table :test #'equal))
+ (defvar *generated-commands/pause* #1#)
+
+ (defun clear-generated-commands ()
+   (setf *generated-commands* #1#
+         *generated-commands/pause* #1#)))
+
+(defmethod bind-command ((input bound-joystick-input) command)
+  (let ((name (command-name command)))
+    (car (gethash/c name (if (pause input)
+                             *generated-commands/pause*
+                             *generated-commands*)
+                    (let ((id (next-command-id)))
+                      (cons id
+                            (if (pause input)
+                                (build-command/pause id command)
+                                (build-command id command))))))))
+
+(defmacro def-bind-commands (input &rest actions)
+  `(defmethod bind-commands ((,input ,input))
+     (with-slots (,@actions) ,input
+       ,@(mapcar #`(unless (typep ,a1 'fixnum)
+                     (let ((command (find-best-match ,a1)))
+                       (setf ,a1
+                             (bind-command ,input command))))
+                 actions))))
+
+(def-bind-commands button action)
+(def-bind-commands axis action-min action-max)
+(def-bind-commands hat action-n action-s action-w action-e)
