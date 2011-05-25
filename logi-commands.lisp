@@ -133,7 +133,7 @@
   (cl-who:with-html-output-to-string (stream)
     (format stream "<?xml version=\"1.0\" encoding=\"utf-8\"?>~%")
     (cl-who:htm
-     (:|GameProfile| :|xmlns| "http:|//www.logitech.com/schemas/2009/gaming/game_profile"
+     (:|GameProfile| :|xmlns| "http://www.logitech.com/schemas/2009/gaming/game_profile"
        (:|Profile| :|Publisher| "cl-profile-generator" :|Installed| "false" :|Author| author
          (:|Name| name)
          (:|Macros|
@@ -147,3 +147,95 @@
 ;;; TODO FFB Einstellungen
 ;;; TODO Modus beachten
 ;;; TODO was bedeutet Mapping??
+
+(defparameter *joystick-buttons* (make-hash-table))
+(defparameter *joystick-bindings* (make-hash-table))
+
+(defclass joystick-input ()
+  ((model :accessor model
+          :initarg  :model)
+   (functionality :accessor functionality
+                  :initarg  :functionality)
+   (nr :accessor nr
+       :initarg  :nr)))
+
+(defparameter *default-mode* (list 1 2 3))
+
+(defmacro in-modes (modes &body body)
+  `(let ((*default-mode* (list ,@modes)))
+     ,@body))
+
+(defclass bound-joystick-input (joystick-input)
+  ((mode :accessor mode
+         :initarg  :mode
+         :initform *default-mode*)
+   (pause :accessor pause
+          :initarg  :pause
+          :initform nil)))
+
+(defclass button (bound-joystick-input)
+  ((action :accessor action
+           :initarg  :action)))
+
+(defclass axis (bound-joystick-input)
+  ((action-min :accessor action-min
+               :initarg  :min)
+   (action-max :accessor action-max
+               :initarg  :max)))
+
+(defclass hat (bound-joystick-input)
+  ((action-n :accessor action-n
+             :initarg  :n)
+   (action-s :accessor action-s
+             :initarg  :s)
+   (action-w :accessor action-w
+             :initarg  :w)
+   (action-e :accessor action-e
+             :initarg  :e)))
+
+(defclass zone (bound-joystick-input)
+  ())
+
+;;; TODO figure out how to handle zone commands (likely a different command
+;;; than bind)
+
+(defmacro defjoystick (name &key model axis buttons hats)
+  (declare (ignorable name))
+  (labels ((def-func (func identifier nr)
+             `(setf (gethash ',identifier *joystick-buttons*)
+                    (make-instance 'joystick-input
+                                   :model ,model
+                                   :functionality ',func
+                                   :nr ,nr)))
+           (def-button (identifier nr)
+             (def-func 'button identifier nr))
+           (def-axis (identifier nr)
+             (def-func 'axis identifier nr))
+           (def-hat (identifier nr)
+             (def-func 'hat identifier nr)))
+   `(progn
+      ,@(mapcar #'def-axis axis (lrange axis))
+      ,@(mapcar #'def-button buttons (lrange buttons))
+      ,@(mapcar #'def-hat hats (lrange hats)))))
+
+(defparameter *keyword-map*
+  '((:left :min)
+    (:right :max)
+    (:aft :min)
+    (:forward :max)
+    (:down :min)
+    (:up :max)))
+
+(defun replace-keywords (k)
+  (mapcar (lambda (x) (aif (assoc1 x *keyword-map*)
+                           (car it)
+                           x))
+          k))
+
+(defmacro bind (input &rest commands)
+  (let ((js-input (gethash input *joystick-buttons*)))
+   `(setf (gethash ',input *joystick-bindings*)
+          (make-instance ',(functionality js-input)
+                         :model ,(model js-input)
+                         :nr ,(nr js-input)
+                         ,@(replace-keywords commands)))))
