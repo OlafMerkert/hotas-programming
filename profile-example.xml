@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameProfile xmlns="http://www.logitech.com/schemas/2009/gaming/game_profile">
+    <Profile GUID="{36B803C6-6E1E-48CE-A276-35FACFFE63F5}" Publisher="Benutzerdefiniertes Profil" Author="Olaf" Revision="3:21/05/2011" Installed="false">
+        <Name>Key Status Monitor</Name>
+        <Signature Key="" Value="" Shortcut="" />
+        <Target IconIndex="0">
+            <Path>C:\Python26-win32\python.exe</Path>
+            <Name>python.exe</Name>
+        </Target>
+        <Macros>
+            <Command Id="1" Name="Linke Maustaste">
+                <Event Type="Mouse" DeltaX="0" DeltaY="0" Mask="1" />
+            </Command>
+            <Command Id="2" Name="Mittlere Maustaste">
+                <Event Type="Mouse" DeltaX="0" DeltaY="0" Mask="4" />
+            </Command>
+            <Command Id="3" Name="Rechte Maustaste">
+                <Event Type="Mouse" DeltaX="0" DeltaY="0" Mask="2" />
+            </Command>
+            <Command Id="4" Name="A">
+                <Event Type="Key" Keyname="A" Up="false" KeynameUndo="A" />
+            </Command>
+            <Command Id="5" Name="b" Repeat="Auto" RepeatRate="1">
+                <Event Type="Key" Keyname="B" Up="false" KeynameUndo="B" />
+            </Command>
+            <Command Id="6" Name="C">
+                <Event Type="Key" Keyname="C" Up="false" />
+                <Event Type="Pause" Time="94" />
+                <Event Type="Key" Keyname="C" Up="true" />
+            </Command>
+            <Command Id="7" Name="D">
+                <Event Type="Key" Keyname="D" Up="false" KeynameUndo="D" />
+            </Command>
+            <Command Id="10" Name="C-A">
+                <Event Type="Key" Keyname="LCTRL" Up="false" />
+                <Event Type="Key" Keyname="A" Up="false" />
+                <Event Type="Key" Keyname="A" Up="true" />
+                <Event Type="Key" Keyname="LCTRL" Up="true" />
+            </Command>
+            <Command Id="11" Name="Keystroke Ctrl + A" IsKeystroke="true">
+                <Event Type="Key" Keyname="LCTRL" Up="false" KeynameUndo="LCTRL" />
+                <Event Type="Key" Keyname="A" Up="false" KeynameUndo="A" />
+            </Command>
+            <AxisCommand Id="8" Name="AD" RefIdMin="4" RefIdMax="10" />
+            <HatCommand Id="11" Name="8Test" HatType="8-way" RefIdN="7" RefIdS="11" RefIdW="4" RefIdE="10" RefIdNE="-1" RefIdNW="-1" RefIdSE="-1" RefIdSW="-1" />
+            <CycleCommand Id="9" Name="AD-B">
+                <CommandRef RefId="4" />
+                <CommandRef RefId="7" />
+            </CycleCommand>
+        </Macros>
+        <Assignments DeviceModel="60">
+            <AxisDynamics>
+                <AxisDef Axis="Z" Mode="M2" Sign="1" Acceleration="0" Speed="100" Deadzone="21" DeadzoneSign="0" />
+            </AxisDynamics>
+            <Command RefId="4">
+                <Control Type="Button" ID="1" Mode="M2" />
+            </Command>
+            <Command RefId="5">
+                <Control Type="Button" ID="2" Mode="M2" />
+            </Command>
+            <Command RefId="6">
+                <Control Type="Button" ID="3" Mode="M2" />
+            </Command>
+            <Axis RefId="8">
+                <Control Type="Axis" ID="2" Mode="M2" />
+            </Axis>
+            <Axis RefId="8">
+                <Control Type="Axis" ID="5" />
+            </Axis>
+            <Hat RefId="11">
+                <Control Type="POV" ID="0" />
+            </Hat>
+            <Cycle RefId="9">
+                <Control Type="Button" ID="0" />
+            </Cycle>
+            <Mapping>
+                <Source Type="Axis" ID="0" />
+                <Destination Type="Axis" ID="1" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="1" />
+                <Destination Type="Axis" ID="2" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="5" />
+                <Destination Type="Axis" ID="32" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="6" />
+                <Destination Type="Axis" ID="64" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="2" />
+                <Destination Type="Axis" ID="4" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="3" />
+                <Destination Type="Axis" ID="8" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="4" />
+<Destination Type="Axis" ID="16" />
+</Mapping>
+</Assignments>
+</Profile>
+</GameProfile>

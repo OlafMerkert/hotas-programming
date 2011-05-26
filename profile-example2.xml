@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameProfile xmlns="http://www.logitech.com/schemas/2009/gaming/game_profile">
+    <Profile GUID="{28FBD7C7-9EBF-4D1B-9760-144EC3943553}" Publisher="Benutzerdefiniertes Profil" Author="Olaf" Revision="7:18/05/2011" Installed="false">
+        <Name>Notepad</Name>
+        <Signature Key="" Value="" Shortcut="" />
+        <Target IconIndex="0">
+            <Path>C:\Windows\System32\notepad.exe</Path>
+            <Name>notepad.exe</Name>
+        </Target>
+        <Macros>
+            <Command Id="1" Name="Linke Maustaste">
+                <Event Type="Mouse" DeltaX="0" DeltaY="0" Mask="1" />
+            </Command>
+            <Command Id="2" Name="Mittlere Maustaste">
+                <Event Type="Mouse" DeltaX="0" DeltaY="0" Mask="4" />
+            </Command>
+            <Command Id="3" Name="Rechte Maustaste">
+                <Event Type="Mouse" DeltaX="0" DeltaY="0" Mask="2" />
+            </Command>
+            <Command Id="4" Name="Keystroke A" IsKeystroke="true">
+                <Event Type="Key" Keyname="A" Up="false" KeynameUndo="A" />
+            </Command>
+            <Command Id="5" Name="c">
+                <Event Type="Key" Keyname="C" Up="false" />
+                <Event Type="Pause" Time="94" />
+                <Event Type="Key" Keyname="C" Up="true" />
+            </Command>
+            <Command Id="6" Name="g mit Pause">
+                <Event Type="Key" Keyname="G" Up="false" />
+                <Event Type="Pause" Time="156" />
+                <Event Type="Key" Keyname="G" Up="true" />
+            </Command>
+            <Command Id="7" Name="Neuer Befehl">
+                <Event Type="Key" Keyname="N" Up="false" KeynameUndo="N" />
+            </Command>
+            <Command Id="8" Name="Neuer Befehl 2">
+                <Event Type="Key" Keyname="N" Up="false" />
+                <Event Type="Pause" Time="141" />
+                <Event Type="Key" Keyname="N" Up="true" />
+            </Command>
+            <Command Id="11" Name="Keystroke B" IsKeystroke="true">
+                <Event Type="Key" Keyname="B" Up="false" KeynameUndo="B" />
+            </Command>
+            <Command Id="12" Name="wdh aus">
+                <Event Type="Key" Keyname="U" Up="false" KeynameUndo="U" />
+            </Command>
+            <Command Id="13" Name="wdh langsam" Repeat="Auto" RepeatRate="1">
+                <Event Type="Key" Keyname="V" Up="false" KeynameUndo="V" />
+            </Command>
+            <AxisCommand Id="9" Name="Achsentest" RefIdMin="8" RefIdMax="7" />
+            <BandCommand Id="10" Name="Zonentest">
+                <Band RefId="6" Min="0" Max="21845" />
+                <Band RefId="-1" Min="21845" Max="43690" />
+                <Band RefId="6" Min="43690" Max="65535" />
+            </BandCommand>
+        </Macros>
+        <Assignments DeviceModel="62">
+            <Axis RefId="9">
+                <Control Type="Axis" ID="0" />
+            </Axis>
+            <Band RefId="10">
+                <Control Type="Axis" ID="1" />
+            </Band>
+            <Mapping>
+                <Source Type="Axis" ID="0" />
+                <Destination Type="Axis" ID="1" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="1" />
+                <Destination Type="Axis" ID="2" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="2" />
+                <Destination Type="Axis" ID="4" />
+            </Mapping>
+        </Assignments>
+        <Assignments DeviceModel="61">
+            <Mapping>
+                <Source Type="Axis" ID="1" />
+                <Destination Type="Axis" ID="2" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="0" />
+                <Destination Type="Axis" ID="1" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="2" />
+                <Destination Type="Axis" ID="4" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="3" />
+                <Destination Type="Axis" ID="8" />
+            </Mapping>
+        </Assignments>
+        <Assignments DeviceModel="60">
+            <AxisDynamics>
+                <AxisDef Axis="Z" Sign="1" Acceleration="0" Speed="100" Deadzone="20" DeadzoneSign="0" />
+                <AxisDef Axis="X" Sign="1" Acceleration="0" Speed="100" Deadzone="0" DeadzoneSign="0" />
+                <AxisDef Axis="Y" Sign="1" Acceleration="0" Speed="100" Deadzone="0" DeadzoneSign="0" />
+                <AxisDef Axis="Z" Mode="M3" Sign="1" Acceleration="0" Speed="100" Deadzone="10" DeadzoneSign="0" />
+            </AxisDynamics>
+            <Command RefId="5">
+                <Control Type="Button" ID="4" />
+            </Command>
+            <Command RefId="4">
+                <Control Type="Button" ID="3" />
+            </Command>
+            <Command RefId="6">
+                <Control Type="Button" ID="5" />
+            </Command>
+            <Command RefId="7">
+                <Control Type="Button" ID="6" />
+            </Command>
+            <Command RefId="8">
+                <Control Type="Button" ID="1" />
+            </Command>
+            <Axis RefId="9">
+                <Control Type="Axis" ID="2" Mode="M3" />
+            </Axis>
+            <Axis RefId="9">
+                <Control Type="Axis" ID="2" />
+            </Axis>
+            <Mapping>
+                <Source Type="Axis" ID="0" />
+                <Destination Type="Axis" ID="1" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="1" />
+                <Destination Type="Axis" ID="2" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="5" />
+                <Destination Type="Axis" ID="32" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="6" />
+                <Destination Type="Axis" ID="64" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="2" />
+                <Destination Type="Axis" ID="4" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="3" />
+                <Destination Type="Axis" ID="8" />
+            </Mapping>
+            <Mapping>
+                <Source Type="Axis" ID="4" />
+                <Destination Type="Axis" ID="16" />
+            </Mapping>
+        </Assignments>
+        <DeviceSpecialOptions>
+            <SpecialOptions DeviceModel="60">
+                <ForceOptions Enable="false" OverallAttenuation="100" SpringAttenuation="100" DamperAttenuation="100" DefaultSpringEnabled="false" DefaultSpringAttenuation="150" />
+                <WheelOptions Enable="false" CombinePedals="false" OperatingRange="0" />
+<GameOptions Enable="false" AllowGameSettings="false" />
+</SpecialOptions>
+</DeviceSpecialOptions>
+</Profile>
+</GameProfile>
