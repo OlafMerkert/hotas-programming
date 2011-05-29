@@ -46,7 +46,9 @@
   (cl-who:with-html-output-to-string (stream)
     (let ((combo (command-combo-logi command)))
       (cl-who:htm
-       (:|Command| :|Id| id :|Name| (command-name command)
+       (:|Command| :|Id| id :|Name| (if pause
+                                        (mkstr (command-name command) " [P]")
+                                        (command-name command))
          (dolist (key (reverse combo))
            (cl-who:htm
             (:|Event| :|Type| "Key"

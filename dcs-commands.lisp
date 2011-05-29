@@ -1,6 +1,6 @@
 (in-package #:dcs-commands)
 
-(defparameter *config-path* #P"/home/olaf/lisp/hotas-programming/default.lua")
+(defparameter *config-path* #P"/home/olaf/Projekte/hotas-programming/default.lua")
 (defvar *last-config* nil)
 
 (defun load-config (file)

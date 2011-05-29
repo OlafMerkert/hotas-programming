@@ -24,7 +24,7 @@
   (:use #:cl #:ol-utils
         #:lua-parser)
   (:export #:load-config
-           #:defconfun
+           #:defconfun #:config
            #:modifier-list
            #:command-list
            #:grouped-command-list
