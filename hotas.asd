@@ -10,5 +10,6 @@
    (:file "parser")
    (:file "lua-parser")
    (:file "dcs-commands")
-   (:file "logi-commands")
-   (:file "command-table-pdf")))
+   (:file "command-table-tex")
+   #|(:file "logi-commands")|#
+   #|(:file "command-table-pdf")|#))

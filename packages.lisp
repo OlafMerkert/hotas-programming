@@ -46,6 +46,10 @@
         #:dcs-commands)
   (:export #:command-table-pdf))
 
+(defpackage #:command-table-tex
+  (:use #:cl #:ol-utils
+        #:dcs-commands))
+
 (defpackage #:logi-commands
   (:use #:cl #:ol-utils
         #:dcs-commands))

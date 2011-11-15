@@ -38,6 +38,18 @@
        (eql char #\_)
        (digit-char-p char))))
 
+(defmacro while (condition &body body)
+  `(do ()
+       ((not ,condition))
+     ,@body))
+
+(defmacro until (condition &body body)
+  `(do ()
+       (,condition)
+     ,@body))
+
+(defmacro neither (&rest conditions)
+  `(not (or ,@conditions)))
 
 (defun tokenize (stream)
   (let ((current-char nil)
@@ -136,7 +148,7 @@
      #'read-next-token)))
 
 (defun test-tokenizer ()
-  (let ((stream (open "/home/olaf/lisp/hotas-programming/default.lua")))
+  (let ((stream (open "/home/olaf/Projekte/hotas-programming/a10-v1110-default.lua")))
     (tokenize stream)))
 
 (defun test-tokenizer-simple-str (str)
