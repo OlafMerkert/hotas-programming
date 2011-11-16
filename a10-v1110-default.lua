@@ -1045,8 +1045,8 @@ keyCommands = {
 {pressed = iCommandRWRIntensityIncrease,                                name = 'Radar Warning Receiver Intensity Increase', category = 'Systems'},
 
 --Seat Adjustment
-{down = 3004, up = 3004, cockpit_device_id = 39, value_down = -1.0, value_up = 0.0, name = 'Seat Adjustment Up', category = 'Systems'},
-{down = 3005, up = 3005, cockpit_device_id = 39, value_down = 1.0, value_up = 0.0, name = 'Seat Adjustment Down', category = 'Systems'},
+-- {down = 3004, up = 3004, cockpit_device_id = 39, value_down = -1.0, value_up = 0.0, name = 'Seat Adjustment Up', category = 'Systems'},
+-- {down = 3005, up = 3005, cockpit_device_id = 39, value_down = 1.0, value_up = 0.0, name = 'Seat Adjustment Down', category = 'Systems'},
 
 },
 }
