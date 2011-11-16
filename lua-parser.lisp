@@ -34,7 +34,10 @@
              (make-token :type 'word :value "end"))))
 
 (defun test-lua-simple ()
-  (let* ((f (open "/home/olaf/Projekte/hotas-programming/a10-v1110-default.lua"))
+  (let* ((f (open
+             ;; "/home/olaf/Projekte/hotas-programming/a10-v1110-default.lua"
+             "/home/olaf/Projekte/hotas-programming/ka-50-v2-default.lua"
+             ))
          (tt (tokenize f))
          (pp (parse-lua-simple tt)))
     (lambda () (funcall pp 'expr))))
