@@ -13,15 +13,10 @@
   (flet ((modi (ref name)
            `((:combos ((:key . "") (:reformers ,ref)))
              (:name . ,name))))
-    (cons (list "Modifier Notation"
-                (modi "LShift" "Left Shift")
-                (modi "RShift" "Right Shift")
-                (modi "LAlt" "Left Alt")
-                (modi "RAlt" "Right Alt")
-                (modi "LCtrl" "Left Control")
-                (modi "RCtrl" "Right Control")
-                (modi "LWin" "Left Windows")
-                (modi "RWin" "Right Windows"))
+    (cons (cons "Modifier Notation"
+                (mapcar #'modi
+                        (assoc1 :dcs *modifiers*)
+                        (assoc1 :human *modifiers*)))
           commands)))
 
 (defmacro! with-tex-output (file &body body)

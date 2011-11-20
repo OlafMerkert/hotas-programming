@@ -2,3 +2,7 @@
 *.lx64fsl
 *~
 experiments
+*.aux
+*.log
+*.pdf
+dcs-a10c-profil.xml
