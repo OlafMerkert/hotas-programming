@@ -3,7 +3,7 @@
 (export '(token token-type token-value equals token-p
           make-token
           tokenize
-          word integer string delim))
+          word number string delim))
 
 (declaim (inline whitespace-p eof-p eol-p))
 
@@ -23,7 +23,7 @@
 
 (defun whitespace-p (char)
   (and (characterp char)
-       (<= (char-code char) #. (char-code #\Space))))
+       (<= (char-code char) #.(char-code #\Space))))
 
 (defun eof-p (char)
   (eql char :eof))
@@ -104,7 +104,7 @@
                     ((alpha-char-p current-char)
                      (read-word))
                     ((digit-char-p current-char)
-                     (read-integer))
+                     (read-number))
                     ((or (char= #\" current-char)
                          (char= #\' current-char))
                      (read-string current-char #\\))
@@ -116,10 +116,11 @@
               (make-token :type 'word
                           :value (extract-stored)))
             
-            (read-integer ()
+            (read-number ()
               (loop do (store-current-read-next)
-                 while (digit-char-p current-char))
-              (make-token :type 'integer
+                 while (or (digit-char-p current-char)
+                           (char= #\. current-char)))
+              (make-token :type 'number
                           :value (extract-stored)))
             
             (read-string (terminator escape)
