@@ -164,7 +164,7 @@ keyCommands = {
 {combos = {{key = 'Num*', reformers = {'RShift'}}}, pressed = iCommandViewForward, up = iCommandViewForwardStop, name = 'Zoom in', category = 'View Cockpit'},
 {combos = {{key = 'Num/', reformers = {'RShift'}}}, pressed = iCommandViewBack, up = iCommandViewBackStop, name = 'Zoom out', category = 'View Cockpit'},
 
--- Cockpit Camera Motion (������������ ������ � ������)
+-- Cockpit Camera Motion
 {combos = {{key = 'Num8', reformers = {'RCtrl','RShift'}}}, pressed = iCommandViewPitCameraMoveUp, up = iCommandViewPitCameraMoveStop, name = 'Cockpit Camera Move Up', category = 'View Cockpit'},
 {combos = {{key = 'Num2', reformers = {'RCtrl','RShift'}}}, pressed = iCommandViewPitCameraMoveDown, up = iCommandViewPitCameraMoveStop, name = 'Cockpit Camera Move Down', category = 'View Cockpit'},
 {combos = {{key = 'Num4', reformers = {'RCtrl','RShift'}}}, pressed = iCommandViewPitCameraMoveLeft, up = iCommandViewPitCameraMoveStop, name = 'Cockpit Camera Move Left', category = 'View Cockpit'},
