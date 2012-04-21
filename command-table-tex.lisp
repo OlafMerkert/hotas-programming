@@ -68,7 +68,10 @@
 
 (defun load-lua-generate-tex (lua aircraft &optional all)
   (let* ((lua-file (merge-pathnames lua #P "/home/olaf/Projekte/hotas-programming/"))
-         (tex-file (make-pathname :type "tex" :defaults lua-file)))
+         (tex-file (make-pathname :type "tex"
+                                  :name (if all (mkstr (pathname-name lua-file) ".all")
+                                            (pathname-name lua-file))
+                                  :defaults lua-file)))
     (load-config lua-file)
     (dbug "config loaded")
     (command-table-tex tex-file aircraft all)
