@@ -77,7 +77,7 @@
 
 
 (defun samples ()
-  (load-lua-generate-tex #P"a10-v1110-default.lua" "A-10C")
-  (load-lua-generate-tex "ka-50-v2-default.lua" "Ka-50 v2"))
+  (load-lua-generate-tex #P"a-10-v1111-default.lua" "A-10C")
+  (load-lua-generate-tex #P"ka-50-v1111-default.lua" "Ka-50 v2"))
 
 (defparameter *ka-50-config* (merge-pathnames "ka-50-v2-default.lua" #P"/home/olaf/Projekte/hotas-programming/"))

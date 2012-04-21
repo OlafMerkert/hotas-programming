@@ -1,17 +1,6 @@
 function layout()
 return {
 
-modifiers = {
-['LShift'] = 'LShift',
-['RShift'] = 'RShift',
-['LAlt'] = 'LAlt',
-['RAlt'] = 'RAlt',
-['LCtrl'] = 'LCtrl',
-['RCtrl'] = 'RCtrl',
-['LWin'] = 'LWin',
-['RWin'] = 'RWin',
-},
-
 keyCommands = {
 
 -- Cheat - Temporary
