@@ -67,17 +67,17 @@
     (tex "end" "multicols")
     (tex "end" "document")))
 
-(defun load-lua-generate-tex (lua aircraft)
+(defun load-lua-generate-tex (lua aircraft &optional all)
   (let* ((lua-file (merge-pathnames lua #P "/home/olaf/Projekte/hotas-programming/"))
          (tex-file (make-pathname :type "tex" :defaults lua-file)))
     (load-config lua-file)
     (dbug "config loaded")
-    (command-table-tex tex-file aircraft)
+    (command-table-tex tex-file aircraft all)
     (dbug "tex generated")))
 
 
-(defun samples ()
-  (load-lua-generate-tex #P"a-10-v1111-default.lua" "A-10C 1.1.1.1")
-  (load-lua-generate-tex #P"ka-50-v1111-default.lua" "Ka-50 1.1.1.1"))
+(defun samples (&optional all)
+  #|(load-lua-generate-tex #P"a-10-v1111-default.lua" "A-10C 1.1.1.1" all)|#
+  (load-lua-generate-tex #P"ka-50-v1111-default.lua" "Ka-50 1.1.1.1" all))
 
 (defparameter *ka-50-config* (merge-pathnames "ka-50-v2-default.lua" #P"/home/olaf/Projekte/hotas-programming/"))
