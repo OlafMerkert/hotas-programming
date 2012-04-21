@@ -48,7 +48,9 @@
 
 (defpackage #:command-table-tex
   (:use #:cl #:ol-utils
-        #:dcs-commands))
+        #:dcs-commands)
+  (:export
+   :samples))
 
 (defpackage #:logi-commands
   (:use #:cl #:ol-utils

@@ -74,8 +74,9 @@
            (current-token nil))
        (labels ((next-token ()
                   (if (< next-token (fill-pointer token-list))
-                      (setf current-token (aref token-list next-token)
-                            next-token    (+ 1 next-token))
+                      (progn
+                        (setf current-token (aref token-list next-token))
+                        (incf next-token))
                       (progn
                         (setf current-token (funcall tokenizer))
                         (dprint "Fetched token: ~A" current-token)
@@ -84,7 +85,7 @@
                         (when current-token
                           (vector-push-extend current-token token-list))
                         (incf next-token)))
-                  t) 
+                  current-token) 
                 (backtrack (&optional (n 1))
                   (decf next-token n)
                   (when (minusp next-token)

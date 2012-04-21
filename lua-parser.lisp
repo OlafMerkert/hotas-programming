@@ -71,9 +71,22 @@
                             (list*->list (rest expr)))))
         (t expr)))
 
+(defun converge/collect (function point &key (test #'eql))
+  "Collect the results of calling the FUNCTION, until its result is
+  POINT."
+  (loop
+     for x = (funcall function)
+     until (funcall test x point)
+     collect x))
+
 (defun parse-lua-stream-to-lisp (stream)
+  ;; unless (eq :eof (peek-char t stream nil :eof nil))
   (let* ((tokenizer (tokenize stream))
          (parser (parse-lua-simple tokenizer)))
-    (lua->lisp (funcall parser 'expr))))
+    (lua->lisp
+     (funcall parser 'expr)
+     #|(converge/collect (lambda ()
+                                   )
+                                 nil)|#)))
 
 (export '(parse-lua-stream-to-lisp))
