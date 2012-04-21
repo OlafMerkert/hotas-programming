@@ -103,8 +103,11 @@
               (cond ((eof-p current-char) nil)
                     ((alpha-char-p current-char)
                      (read-word))
-                    ((digit-char-p current-char)
+                    ((digit-p current-char)
                      (read-number))
+                    ((and (char= current-char #\-)
+                          (digit-p (peek-char nil stream nil :eof)))
+                     (read-number t))
                     ((or (char= #\" current-char)
                          (char= #\' current-char))
                      (read-string current-char #\\))
@@ -116,10 +119,12 @@
               (make-token :type 'word
                           :value (extract-stored)))
             
-            (read-number ()
+            (read-number (&optional sign)
+              (when sign
+                (store-current-read-next))
               (loop do (store-current-read-next)
-                 while (or (digit-char-p current-char)
-                           (char= #\. current-char)))
+                 while (or (digit-p current-char)
+                           (eql #\. current-char)))
               (make-token :type 'number
                           :value (extract-stored)))
             
@@ -162,3 +167,7 @@
     (format t "~A" (token-value token))
     (if (eql (token-value token) #\,)
         (terpri))))
+
+(defun digit-p (char)
+  (and (characterp char)
+       (digit-char-p char)))

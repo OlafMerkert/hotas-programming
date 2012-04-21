@@ -1,9 +1,10 @@
 (in-package #:lua-parser)
 
 (defgrammar lua-simple
-    (word string delim)
+    (word string number delim)
   (expr (function)
         (string)
+        (number)
         (assign)
         (word)
         (list))
@@ -83,10 +84,6 @@
   ;; unless (eq :eof (peek-char t stream nil :eof nil))
   (let* ((tokenizer (tokenize stream))
          (parser (parse-lua-simple tokenizer)))
-    (lua->lisp
-     (funcall parser 'expr)
-     #|(converge/collect (lambda ()
-                                   )
-                                 nil)|#)))
+    (lua->lisp (funcall parser 'expr))))
 
 (export '(parse-lua-stream-to-lisp))
