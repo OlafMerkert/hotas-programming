@@ -1,0 +1,204 @@
+* DONE Combat
+  CLOSED: [2012-04-22 So 10:05]
+NVG on/off
+NVG Gain + / -
+eject
+Autopilot Select  Path / Alt/Hdg / Alt
+=
+=
+
+Gun arm / safe / pac
+=
+
+* DONE Takeoff / Landing
+  CLOSED: [2012-04-22 So 10:12]
+Master caution push-light
+Landing gear handle  down / up
+Landing gear horn silence
+Flaps down / mvr / up
+Emergency Hand Brake
+Take off trim
+cross feed
+refuel lever
+Yaw trim L / R
+
+* DONE Ingress / Egress
+  CLOSED: [2012-04-21 Sa 23:09]
+Master arm / safe
+Laser arm / safe
+IFFCC off / test / on
+=
+
+** DONE CMS
+   CLOSED: [2012-04-22 So 10:43]
+mode select  off / stby / man / semi / auto
+4 system select  off / on / menu
+4 set option select
+=
+=
+next rocker - / +
+return
+
+* DONE Navigation
+  CLOSED: [2012-04-22 So 10:29]
+heading knob L / R
+course knob L / R
+QFE knob + / -
+
+** DONE TACAN
+   CLOSED: [2012-04-22 So 10:27]
+TACAN mode  off / rec / tr / aa rec / aa tr
+TACAN volume knob - / +
+TACAN channel selector - / +; - / + / push
+
+** DONE ILS
+   CLOSED: [2012-04-22 So 10:27]
+ILS power
+ILS volume know - / +
+ILS freq select - / +; - / +
+** DONE CDU + AAP + UFC
+   CLOSED: [2012-04-21 Sa 23:09]
+AAP steerpoint mode  flt plan / mark / mission
+=
+=
+AAP page dial other / pos / steer / waypt
+=
+=
+=
+CDU page sys
+CDU page nav
+CDU page wp
+CDU page oset
+CDU page fpm
+CDU page prev
+UFC digit 0-9
+UFC CLR
+UFC Enter
+AAP steer toggle
+CDU 4 LSK L + R
+CDU alpha A-Z
+CDU ".",  "/", Space, 
+CDU +/- rocker 
+CDU Page Rocker
+
+CDU Blank rocker
+CDU Fault Acknowledge
+CDU MK (overhead mark)
+UFC Time Hack
+UFC Alt Alrt
+UFC Data rocker
+UFC Sel rocker
+UFC Depr Rocker
+
+** DONE Nav Panel
+   CLOSED: [2012-04-22 So 10:56]
+str pt navigation
+anchr pt navigation
+TCN navigation
+ILS navigation
+Steering bar stow
+
+* DONE Startup / Shutdown
+  CLOSED: [2012-04-22 So 10:29]
+Ejection seat arm
+Canopy Open/Close
+SAI pitch left / right / cage
+** DONE Engines
+   CLOSED: [2012-04-22 So 10:29]
+Boost pumps Main + Wing L + R
+=
+=
+=
+Throttle Idle detent L + R on / off
+APU switch on / off
+=
+** DONE Systems
+   CLOSED: [2012-04-22 So 10:57]
+CICU power
+CDU power
+EGI power
+
+TGP power
+
+battery power
+inverter off / stby
+engine generator L + R
+apu generator
+MFCD off / day / night  L + R
+=
+JTRS power
+
+Anti Skid
+Altitude source baro / delta / radar
+=
+=
+HUD mode day / night
+HUD mode norm / stby
+
+
+EGI navigation mode
+EAC Arm / off
+Radar Altimeter norm / disable
+4 SAS channels
+
+
+
+Oxygen supply off / on
+
+
+
+* HOTAS
+CMS cycle jammer program
+
+* DONE Comms
+  CLOSED: [2012-04-22 So 10:28]
+** DONE VHF AM
+   CLOSED: [2012-04-22 So 08:09]
+VHF AM preset selector wheel - / +
+VHF AM freq select dial  pre / man / emer am
+VHF AM freq mode dial  off / tr
+VHF AM freq load
+** DONE UHF
+   CLOSED: [2012-04-22 So 08:09]
+UHF preset selector wheel - / +
+UHF freq mode dial  manual / preset / guard
+UHF function dial  off / main / both
+UHF freq load ()
+** DONE VHF FM
+   CLOSED: [2012-04-22 So 08:09]
+VHF FM preset selector wheel - / +
+VHF FM freq select dial  pre / man / emer fm
+VHF FM freq mode dial  off / tr / df??
+VHF FM freq load
+** DONE Intercom
+   CLOSED: [2012-04-22 So 08:09]
+hot mic switch
+transmitter select  intercom / vhf / fm / hf
+* DONE Lights / Heating
+  CLOSED: [2012-04-22 So 09:49]
+emergency floodlight
+HOTAS Pinky Switch aft / center 
+position lights  steady / off / flash
+formation lights dial - / +
+anti collision light
+nose floodlight
+Landing lights  taxi / off / land
+=
+=
+pitot heater
+
+
+
+refuel light dial - / +
+accelerometer/compass light
+flight instruments - / +
+
+aux instruments - / +
+signal lights  dim / brt
+engine instruments - / +
+floodlight - / +
+console light - / +
+
+* Other
+
+* Game (as ka-50)
