@@ -5,4 +5,5 @@ experiments
 *.aux
 *.log
 *.pdf
+*.tex
 dcs-a10c-profil.xml
