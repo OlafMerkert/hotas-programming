@@ -50,7 +50,8 @@
   (:use #:cl #:ol-utils
         #:dcs-commands)
   (:export
-   :samples))
+   :samples
+   :custom))
 
 (defpackage #:logi-commands
   (:use #:cl #:ol-utils
