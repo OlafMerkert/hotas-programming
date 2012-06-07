@@ -79,8 +79,9 @@
 
 
 (defun samples (&optional all)
-  (load-lua-generate-tex #P"a-10-v1111-default.lua" "A-10C 1.1.1.1 Default" all)
-  (load-lua-generate-tex #P"ka-50-v1111-default.lua" "Ka-50 1.1.1.1 Default" all))
+  (load-lua-generate-tex #P"a-10-v1121-default.lua" "A-10C 1.1.2.1 Default" all)
+  (load-lua-generate-tex #P"ka-50-v1111-default.lua" "Ka-50 1.1.1.1 Default" all)
+  (load-lua-generate-tex #P"p-51-v1121-default.lua" "P-51D 1.1.2.1 Default" all))
 
 (defun custom ()
   (load-lua-generate-tex #P"a-10c keyboard/Keyboard.lua" "A-10C Customised"))
