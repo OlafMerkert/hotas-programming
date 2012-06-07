@@ -1,5 +1,7 @@
 (in-package #:dcs-commands)
 
+(defparameter lua-files-dir #P"/home/olaf/Projekte/hotas-programming/")
+
 (defvar *last-config* nil)
 
 (defun load-config (file)

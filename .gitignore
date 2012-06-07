@@ -7,3 +7,6 @@ experiments
 *.pdf
 *.tex
 dcs-a10c-profil.xml
+/a-10-v1121-default.org
+/ka-50-v1111-default.org
+/p-51-v1121-default.org

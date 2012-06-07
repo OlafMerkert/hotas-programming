@@ -1,0 +1,21 @@
+(in-package #:command-table-org)
+
+(defconfun command-table-org (file)
+  (with-open-file (stream file :direction :output :if-exists :supersede)
+    (dolist (category (sorted-commands nil config))
+      (format stream "* ~A~%" (first category))
+      (dolist (command (rest category))
+        (format stream "** ~A~%" (command-name command)))
+      (terpri stream))))
+
+(defun load-lua-generate-org (lua &rest stuff)
+  (declare (ignore stuff))
+  (let* ((lua-file (merge-pathnames lua lua-files-dir))
+         (org-file (make-pathname :type "org" :defaults lua-file)))
+    (load-config lua-file)
+    (command-table-org org-file)))
+
+(defun samples (&optional all)
+  (load-lua-generate-org #P"a-10-v1121-default.lua" "A-10C 1.1.2.1 Default" all)
+  (load-lua-generate-org #P"ka-50-v1111-default.lua" "Ka-50 1.1.1.1 Default" all)
+  (load-lua-generate-org #P"p-51-v1121-default.lua" "P-51D 1.1.2.1 Default" all))

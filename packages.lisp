@@ -39,7 +39,8 @@
            #:find-command-fuzzy
            #:most-simple-assigned
            #:find-best-match%
-           #:find-best-match))
+           #:find-best-match
+           #:lua-files-dir))
 
 (defpackage #:command-table
   (:use #:cl #:ol-utils
@@ -54,5 +55,9 @@
    :custom))
 
 (defpackage #:logi-commands
+  (:use #:cl #:ol-utils
+        #:dcs-commands))
+
+(defpackage #:command-table-org
   (:use #:cl #:ol-utils
         #:dcs-commands))
