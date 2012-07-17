@@ -4,12 +4,12 @@ return {
 keyCommands = {
 
 -- Temporary
-{combos = {{key = '`'}}, down = ICommandToggleConsole, name = 'Toggle Console', category = 'Debug'},
-{combos = {{key = 'X', reformers = {'LShift', 'LCtrl'}}}, down = iCommandViewExplosion, name = 'Explosion', category = 'Cheat'},
+--{combos = {{key = '`'}}, down = ICommandToggleConsole, name = 'Toggle Console', category = 'Debug'},
+--{combos = {{key = 'X', reformers = {'LShift', 'LCtrl'}}}, down = iCommandViewExplosion, name = 'Explosion', category = 'Cheat'},
 
 {combos = {{key = 'Home', reformers = {'RWin'}}} , 			down = iCommandEnginesStart, name = 'Start Procedure', category = 'Cheat'},
 {combos = {{key = 'End', reformers = {'RWin'}}} , 			down = iCommandEnginesStop, name = 'Stop Procedure', category = 'Cheat'},
-{combos = {{key = 'R', reformers = {'RWin'}}},  			down = iCommandReloadTables, name = 'Reload Cockpit', category = 'Debug'},
+--{combos = {{key = 'R', reformers = {'RWin'}}},  			down = iCommandReloadTables, name = 'Reload Cockpit', category = 'Debug'},
 
 
 -- Gameplay
@@ -27,7 +27,6 @@ keyCommands = {
 {combos = {{key = 'Tab', reformers = {'RCtrl', 'RShift'}}}, down = iCommandRecoverHuman, name = 'Get new plane - respawn', category = 'General'},
 {combos = {{key = 'SysRQ'}}, 								down = iCommandScreenShot, name = 'Screenshot', category = 'General'},
 {combos = {{key = 'Tab', reformers = {'LShift'}}}, 			down = iCommandTrkEsc, name = 'Playback track cancel', category = 'General'},
-{combos = {{key = 'Y', reformers = {'LShift'}}}, 			down = iCommandInfoOnOff, name = 'Info bar view toggle', category = 'General'},
 {combos = {{key = 'Pause', reformers = {'RShift'}}},		down = iCommandOneFrame, name = 'One frame mode', category = 'General'},
 {combos = {{key = 'Pause', reformers = {'RCtrl'}}}, 		down = iCommandGraphicsFrameRate, name = 'Frame rate counter - Service info', category = 'General'},
 {combos = {{key = 'Y', reformers = {'LAlt'}}}, 				down = iCommandViewCoordinatesInLinearUnits, name = 'Coordinates units change', category = 'General'},
@@ -52,9 +51,10 @@ keyCommands = {
 {combos = {{key = 'U', reformers = {'LWin'}}}, 				down = iCommandAWACSHomeBearing, name = 'COMM Ask AWACS home airbase (easy communication only)', category = 'Communications'},
 {combos = {{key = 'G', reformers = {'LWin'}}}, 				down = iCommandPlane_EngageGroundTargets, name = 'COMM Attack Ground Targets (easy communication only)', category = 'Communications'},
 {combos = {{key = 'D', reformers = {'LWin'}}}, 				down = iCommandPlane_EngageAirDefenses, name = 'COMM Attack Air Defenses (easy communication only)', category = 'Communications'},
-{combos = {{key = '\\'}}, 									down = iCommandToggleCommandMenu, up = iCommandToggleCommandMenu, name = 'COMM Communication menu', category = 'Communications'},
-{combos = {{key = '\\', reformers = {'LShift'}}}, 			down = ICommandSwitchDialog, name = 'COMM Switch dialog', category = 'Communications'},
-{combos = {{key = '\\', reformers = {'LCtrl'}}}, 			down = ICommandSwitchToCommonDialog, name = 'COMM Switch to main menu', category = 'Communications'},
+{combos = {{key = '\\'}}, 									down = iCommandToggleCommandMenu, name = 'COMM Communication menu', category = 'Communications'},
+{combos = {{key = '\\', reformers = {'RShift'}}}, 			down = ICommandSwitchDialog, name = 'COMM Switch dialog', category = 'Communications'},
+{combos = {{key = '\\', reformers = {'RCtrl'}}}, 			down = ICommandSwitchToCommonDialog, name = 'COMM Switch to main menu', category = 'Communications'},
+{combos = {{key = '\\', reformers = {'RAlt'}}},				down = iCommandPlane_P_51_PTT_on, up = iCommandPlane_P_51_PTT_off, name = 'COMM Push to talk', category = 'Communications'},
 
 -- View                                                    
 {combos = {{key = 'Num4'}}, 								pressed = iCommandViewLeftSlow, up = iCommandViewStopSlow, name = 'View Left slow', category = 'View'},
@@ -226,12 +226,12 @@ keyCommands = {
 {combos = {{key = 'M'}},						 			down = 3020, cockpit_device_id = 5, value_down = 1.0, name = 'Mixture control (rotary)', category = 'Flight Control'},
 
 {combos = {{key = 'X', reformers = {'LShift'}}}, 			down = 3015, up = 3015, cockpit_device_id = 12, value_down = 1.0, value_up = 0.0, name = 'Stick lock in the Forward Position', category = 'Flight Control'},
-{combos = {{key = 'X', reformers = {'LAlt', 'LShift'}}},	down = 3016, up = 3016, cockpit_device_id = 12, value_down = 1.0, value_up = 0.0, name = 'Stick lock in the Neutral Position', category = 'Flight Control'},
+{combos = {{key = 'X', reformers = {'LAlt'}}},				down = 3016, up = 3016, cockpit_device_id = 12, value_down = 1.0, value_up = 0.0, name = 'Stick lock in the Neutral Position', category = 'Flight Control'},
 
 {combos = {{key = 'X', reformers = {'LCtrl'}}}, 			pressed = 3013, cockpit_device_id = 5, value_pressed = 1.0, name = 'Throttle Control Lock', category = 'Flight Control'},
 {combos = {{key = 'X', reformers = {'LCtrl', 'LAlt'}}},		pressed = 3013, cockpit_device_id = 5, value_pressed = -1.0, name = 'Throttle Control Unlock', category = 'Flight Control'},
-{combos = {{key = 'X', reformers = {'LAlt'}}}, 				pressed = 3015, cockpit_device_id = 5, value_pressed = 1.0, name = 'Propeller & Mixture Lock', category = 'Flight Control'},
-{combos = {{key = 'X', reformers = {'LShift', 'LAlt'}}},	pressed = 3015, cockpit_device_id = 5, value_pressed = -1.0, name = 'Propeller & Mixture Unlock', category = 'Flight Control'},
+{combos = {{key = 'X', reformers = {'LShift', 'LAlt'}}}, 	pressed = 3015, cockpit_device_id = 5, value_pressed = 1.0, name = 'Propeller & Mixture Lock', category = 'Flight Control'},
+{combos = {{key = 'X', reformers = {'LShift', 'LCtrl', 'LAlt'}}},	pressed = 3015, cockpit_device_id = 5, value_pressed = -1.0, name = 'Propeller & Mixture Unlock', category = 'Flight Control'},
 
 --flaps
 {combos = {{key = 'F', reformers = {'LShift'}}} , 			down = 3002, cockpit_device_id = 12, value_down = 1.0, name = 'Flaps Up', category = 'Flight Control'},

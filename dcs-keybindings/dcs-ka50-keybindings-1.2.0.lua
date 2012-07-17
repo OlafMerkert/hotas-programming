@@ -4,10 +4,12 @@ return {
 keyCommands = {
 
 -- Cheat - Temporary
+--{combos = {{key = 'X', reformers = {'LShift', 'LCtrl'}}}, pressed = iCommandViewExplosion, name = 'Explosion', category = 'Cheat'},
 {combos = {{key = 'Home', reformers = {'LWin'}}}, down = iCommandEnginesStart, name = 'Auto execute full start procedure', category = 'Cheat'},
 {combos = {{key = 'End' , reformers = {'LWin'}}} , down = iCommandEnginesStop, name = 'Auto execute full stop procedure' , category = 'Cheat'},
 {combos = {{key = 'Pause', reformers = {'LShift', 'LWin'}}}, down = iCommandActivePauseOnOff, name = 'Active Pause', category = 'Cheat'},
-
+--{combos = {{key = 'R', reformers = {'RWin'}}},  	down = iCommandReloadTables, name = 'Reload Cockpit', category = 'Debug'},
+--{combos = {{key = '`'}}, down = ICommandToggleConsole, name = 'Toggle Console', category = 'Debug'},
 
 -- General
 {combos = {{key = 'Esc'}}, down = iCommandQuit, name = 'End mission', category = 'General'},
@@ -27,7 +29,9 @@ keyCommands = {
 {combos = {{key = 'Enter', reformers = {'RCtrl'}}}, down = iCommandPlane_ShowControls, name = 'Show controls indicator' , category = 'General'},
 {combos = {{key = 'B', reformers = {'LAlt'}}},				down = iCommandViewBriefing, name = 'View briefing on/off', category = 'General'},
 {combos = {{key = '\''}}, 									down = iCommandScoresWindowToggle, name = 'Score window', category = 'General'},
-{combos = {{key = '\'', reformers = {'RShift'}}}, 			down = iCommandDebriefing, name = 'Show debriefing window', category = 'General'},
+{combos = {{key = '\'', reformers = {'RShift'}}}, 			down = iCommandDebriefing, name = 'Debriefing window', category = 'General'},
+{combos = {{key = '\'', reformers = {'LAlt'}}}, 			down = iCommandMissionResourcesManagement, name = 'Rearming and Refueling Window', category = 'General'},
+{combos = {{key = 'J', reformers = {'RAlt'}}}, down = iCommandPlaneJump, name = 'Jump into selected aircraft', category = 'General'},
 
 
 -- View                                                    
@@ -122,8 +126,8 @@ keyCommands = {
 {combos = {{key = 'Num6', reformers = {'RAlt'}}}, down = iCommandViewCameraRightSlow, name = 'Camera view right slow', category = 'View Cockpit'},
 {combos = {{key = 'Num7', reformers = {'RAlt'}}}, down = iCommandViewCameraUpLeftSlow, name = 'Camera view up-left slow', category = 'View Cockpit'},
 {combos = {{key = 'Num1', reformers = {'RAlt'}}}, down = iCommandViewCameraDownLeftSlow, name = 'Camera view down-left slow', category = 'View Cockpit'},
-{combos = {{key = 'Num9', reformers = {'RAlt'}}}, down = iCommandViewCameraDownRight, name = 'Camera view up-right slow', category = 'View Cockpit'},
-{combos = {{key = 'Num3', reformers = {'RAlt'}}}, down = iCommandViewCameraUpRightSlow, name = 'Camera view down-right slow', category = 'View Cockpit'},
+{combos = {{key = 'Num9', reformers = {'RAlt'}}}, down = iCommandViewCameraDownRight, name = 'Camera view down-right slow', category = 'View Cockpit'},
+{combos = {{key = 'Num3', reformers = {'RAlt'}}}, down = iCommandViewCameraUpRightSlow, name = 'Camera view up-right slow', category = 'View Cockpit'},
 {combos = {{key = 'Num5', reformers = {'RShift'}}}, down = iCommandViewCameraCenter, name = 'Center camera view', category = 'View Cockpit'},
 {combos = {{key = 'Num5', reformers = {'RCtrl'}}}, down = iCommandViewCameraReturn, name = 'Return camera', category = 'View Cockpit'},
 {combos = {{key = 'Num5', reformers = {'RAlt'}}}, down = iCommandViewCameraBaseReturn, name = 'Return camera base', category = 'View Cockpit'},
@@ -178,6 +182,7 @@ keyCommands = {
 {combos = {{key = 'G'}}, down = iCommandPlaneGear, name = 'Gear lever', category = 'Ins Forward panel and gauges'},
 {combos = {{key = 'G', reformers = {'LAlt'}}}, down = iCommandEmergencyGear, name = 'Emeregency gear', category = 'Ins Forward panel and gauges'},
 {combos = {{key = 'G', reformers = {'LCtrl'}}}, down = iCommandEmergencyGearCover, name = 'Emeregency gear cover', category = 'Ins Forward panel and gauges'},
+
 
 {combos = {{key = 'C', reformers = {'RCtrl','RShift','RAlt'}}}, down = iCommandMechClock_LeftLever_Down, up = iCommandMechClock_LeftLever_Down_up, name = 'Mech clock. Left lever Down', category = 'Ins Forward panel and gauges'},
 {combos = {{key = 'M', reformers = {'RShift'}}}, down = iCommandMechClock_LeftLever_Up, name = 'Mech clock. Left lever Up', category = 'Ins Forward panel and gauges'},
@@ -277,6 +282,7 @@ keyCommands = {
 {combos = {{key = '-'}}, down = iCommandPlaneZoomOut, name = 'Shkval Wide View 7x', category = 'Ins Collective Stick'},
 {combos = {{key = ']'}}, down = iCommandPlaneIncreaseBase_Distance, up = iCommandPlaneStopBase_Distance, name = 'TV Target frame Increase size', category = 'Ins Collective Stick'},
 {combos = {{key = '['}}, down = iCommandPlaneDecreaseBase_Distance, up = iCommandPlaneStopBase_Distance, name = 'TV Target frame Decrease size', category = 'Ins Collective Stick'},
+{combos = {{key = '\\', reformers = {'RAlt'}}}, down = iCommandPlane_SPU9_PTT_on, up = iCommandPlane_SPU9_PTT_off, name = 'SPU-9 PTT', category = 'Ins Collective Stick'},
 
 {combos = {{key = 'R'}}, down = iCommandPlane_RouteMode, name = 'Engage/Disengage Route Mode', category = 'Ins Collective Stick'},
 {combos = {{key = 'D'}}, down = iCommandPlane_DescentMode, up = iCommandPlane_DescentModeOff, name = 'Engage Descent Mode', category = 'Ins Collective Stick'},
@@ -308,10 +314,10 @@ keyCommands = {
 {combos = {{key = 'E', reformers = {'LAlt'}}}, down = iCommandEngineLaunchMethod, name = 'Engine Startup/Crank/False Start selector', category = 'Ins Engines start-up control panel and levers'},
 {combos = {{key = 'PageUp'}}, down = iCommandPlaneAUTIncreaseRegime, name = 'Throttle up (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
 {combos = {{key = 'PageDown'}}, down = iCommandPlaneAUTDecreaseRegime, name = 'Throttle down (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
-{combos = {{key = 'PageUp', reformers = {'RAlt'}}}, down = iCommandPlaneAUTIncreaseRegimeLeft, name = 'Left Throttle up (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
-{combos = {{key = 'PageDown', reformers = {'RAlt'}}}, down = iCommandPlaneAUTDecreaseRegimeLeft, name = 'Left Throttle down (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
-{combos = {{key = 'PageUp', reformers = {'RShift'}}}, down = iCommandPlaneAUTIncreaseRegimeRight, name = 'Right Throttle up (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
-{combos = {{key = 'PageDown', reformers = {'RShift'}}}, down = iCommandPlaneAUTDecreaseRegimeRight, name = 'Right Throttle down (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
+{combos = {{key = 'PageUp', reformers = {'RAlt'}}}, down = iCommandPlaneAUTIncreaseRegimeLeft, name = 'Throttle Left Up (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
+{combos = {{key = 'PageDown', reformers = {'RAlt'}}}, down = iCommandPlaneAUTDecreaseRegimeLeft, name = 'Throttle Left Down (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
+{combos = {{key = 'PageUp', reformers = {'RShift'}}}, down = iCommandPlaneAUTIncreaseRegimeRight, name = 'Throttle Right Up (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
+{combos = {{key = 'PageDown', reformers = {'RShift'}}}, down = iCommandPlaneAUTDecreaseRegimeRight, name = 'Throttle Right Down (Idle-Medium-Auto-Full)', category = 'Ins Engines start-up control panel and levers'},
 {combos = {{key = 'PageUp', reformers = {'RCtrl'}}}, down = iCommandHelicopter_Left_Engine_Lock, name = 'Cut-off valve left engine', category = 'Ins Engines start-up control panel and levers'},
 {combos = {{key = 'PageDown', reformers = {'RCtrl'}}}, down = iCommandHelicopter_Right_Engine_Lock, name = 'Cut-off valve right engine', category = 'Ins Engines start-up control panel and levers'},
 {combos = {{key = 'R', reformers = {'LShift'}}}, down = iCommandHelicopter_Rotor_Lock, name = 'Rotor brake', category = 'Ins Engines start-up control panel and levers'},
@@ -420,6 +426,7 @@ keyCommands = {
 {combos = {{key = 'Z', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_SPU9_SPU_9_on_off, name = 'Radio equipment AVSK (SPU-9) intercom', category = 'Ins Wall panel'},
 {combos = {{key = 'P', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_R_800_Power_on_off, name = 'Radio equipment VHF-2 (R-800)', category = 'Ins Wall panel'},
 {combos = {{key = 'P', reformers = {'RCtrl','RAlt'}}}, down = iCommandPlane_R_828_Power_on_off, name = 'Radio equipment VHF-1 (R-828)', category = 'Ins Wall panel'},
+
 {combos = {{key = 'O', reformers = {'LCtrl','LShift'}}}, down = iCommandDatalinkTLK, name = 'Radio equipment datalink TLK', category = 'Ins Wall panel'},
 {combos = {{key = 'P', reformers = {'LCtrl','LShift'}}}, down = iCommandDatalinkUHF_TLK, name = 'Radio equipment datalink UHF TLK', category = 'Ins Wall panel'},
 
@@ -489,7 +496,7 @@ keyCommands = {
 {combos = {{key = 'K'}},						 		down = iCommandPlaneCockpitIllumination, name = 'Lighting cockpit interior lamp switch', category = 'Ins Wall panel'},
 {combos = {{key = 'K', reformers = {'RShift','RAlt'}}}, down = iCommandPlaneADIAHRIllumination, name = 'Lighting HSI and ADI switch', category = 'Ins Wall panel'},
 {combos = {{key = 'K', reformers = {'RCtrl','RAlt'}}}, down = iCommandControlPanelIllumination, name = 'Lighting auxiliary panel switch', category = 'Ins Wall panel'},
-{combos = {{key = 'J', reformers = {'RAlt'}}},   down = iCommandPlaneRotorTipLights, name = 'Lights rotor tip', category = 'Ins Wall panel'},
+{combos = {{key = 'J', reformers = {'RCtrl','RAlt'}}},   down = iCommandPlaneRotorTipLights, name = 'Lights rotor tip', category = 'Ins Wall panel'},
 {combos = {{key = 'J', reformers = {'RShift'}}},  down =  iCommandPlaneAntiCollisionLights , name  = 'Light anti-collision', category = 'Ins Wall panel'},
 {combos = {{key = 'J', reformers = {'RCtrl'}}},  down =  iCommandPlaneFormationLights , name  =  'Lights formation 10\%/30\%/100\%/Off', category = 'Ins Wall panel'},
 
@@ -567,19 +574,19 @@ keyCommands = {
 {combos = {{key = '4', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_R_800_4th_wheel_down, name = 'R-800 Rotary 4 Down', category = 'Ins Radio R-800 VHF-2'},
 {combos = {{key = 'R', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_R_800_Noise_Reductor_on_off, name = 'R-800 Squelch', category = 'Ins Radio R-800 VHF-2'},
 {combos = {{key = 'M', reformers = {'LShift','LCtrl','LAlt'}}}, down = iCommandPlane_R_800_Modulation_change, name = 'R-800 AM-FM Mode switch', category = 'Ins Radio R-800 VHF-2'},
-{combos = {{key = '5', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_R_800_50_100_switch, name = 'Data transfer rate switch', category = 'Ins Radio R-800 VHF-2'},
-{combos = {{key = 'A', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_R_800_ADF_Sound_switch, name = 'ADF switch', category = 'Ins Radio R-800 VHF-2'},
-{combos = {{key = 'E', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_R_800_Emergency_Radio, name = 'Emergency receiver', category = 'Ins Radio R-800 VHF-2'},
-{combos = {{key = 'T', reformers = {'LCtrl','LShift'}}}, down = iCommandPlane_R_800_Test, up = iCommandPlane_R_800_Test_up, name = 'Test button', category = 'Ins Radio R-800 VHF-2'},
+{combos = {{key = '5', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_R_800_50_100_switch, name = 'R-800 Data transfer rate switch', category = 'Ins Radio R-800 VHF-2'},
+{combos = {{key = 'A', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_R_800_ADF_Sound_switch, name = 'R-800 ADF switch', category = 'Ins Radio R-800 VHF-2'},
+{combos = {{key = 'E', reformers = {'LCtrl','LAlt'}}}, down = iCommandPlane_R_800_Emergency_Radio, name = 'R-800 Emergency receiver', category = 'Ins Radio R-800 VHF-2'},
+{combos = {{key = 'T', reformers = {'LCtrl','LShift'}}}, down = iCommandPlane_R_800_Test, up = iCommandPlane_R_800_Test_up, name = 'R-800 Test button', category = 'Ins Radio R-800 VHF-2'},
 
 
 --Ins Radio R-828 VHF-1
-{combos = {{key = 'M', reformers = {'RCtrl','RAlt'}}}, down = iCommandPlane_R_828_Channel_next, name = 'Channel selector next', category = 'Ins Radio R-828 VHF-1'},
-{combos = {{key = 'N', reformers = {'RCtrl','RAlt'}}}, down = iCommandPlane_R_828_Channel_prevous, name = 'Channel selector previous', category = 'Ins Radio R-828 VHF-1'},
+{combos = {{key = 'M', reformers = {'RCtrl','RAlt'}}}, down = iCommandPlane_R_828_Channel_next, name = 'R-828 Channel selector next', category = 'Ins Radio R-828 VHF-1'},
+{combos = {{key = 'N', reformers = {'RCtrl','RAlt'}}}, down = iCommandPlane_R_828_Channel_prevous, name = 'R-828 Channel selector previous', category = 'Ins Radio R-828 VHF-1'},
 {combos = {{key = 'R', reformers = {'RCtrl','RAlt'}}}, down = iCommandPlane_R_828_Noise_Reductor_on_off, name = 'R-828 Squelch', category = 'Ins Radio R-828 VHF-1'},
-{combos = {{key = 'T', reformers = {'RCtrl','RShift'}}}, down = iCommandPlane_R_828_ASU, up = iCommandPlane_R_828_ASU_up, name = 'Tuner button', category = 'Ins Radio R-828 VHF-1'},
-{combos = {{key = ']', reformers = {'LCtrl','LShift'}}}, down = iCommandPlane_R_828_volume_up, name = 'Volume up', category = 'Ins Radio R-828 VHF-1'},
-{combos = {{key = '[', reformers = {'LCtrl','LShift'}}}, down = iCommandPlane_R_828_volume_down, name = 'Volume down', category = 'Ins Radio R-828 VHF-1'},
+{combos = {{key = 'T', reformers = {'RCtrl','RShift'}}}, down = iCommandPlane_R_828_ASU, up = iCommandPlane_R_828_ASU_up, name = 'R-828 Tuner button', category = 'Ins Radio R-828 VHF-1'},
+{combos = {{key = ']', reformers = {'LCtrl','LShift'}}}, down = iCommandPlane_R_828_volume_up, name = 'R-828 Volume up', category = 'Ins Radio R-828 VHF-1'},
+{combos = {{key = '[', reformers = {'LCtrl','LShift'}}}, down = iCommandPlane_R_828_volume_down, name = 'R-828 Volume down', category = 'Ins Radio R-828 VHF-1'},
 
 
 
@@ -644,9 +651,9 @@ keyCommands = {
 {combos = {{key = '\\', reformers = {'LCtrl'}}}, down = ICommandSwitchToCommonDialog, name = 'Switch to main menu', category = 'Communications'},
 
 --FAC
-{combos = {{key = 'B', reformers = {'LWin'}}}, down = iCommandViewBinocular , name = 'Binocular view toggle', category = 'FAC'},
-{combos = {{key = 'L', reformers = {'LAlt'}}}, down = iCommandViewLaserOnOff, name = 'Binocular laser illumination toggle', category = 'FAC'},
-{combos = {{key = 'Z', reformers = {'LWin'}}}, down = iCommandViewIR		, name = 'Binocular view IR mode', category = 'FAC'},
+--{combos = {{key = 'B', reformers = {'LWin'}}}, down = iCommandViewBinocular , name = 'Binocular view toggle', category = 'FAC'},
+--{combos = {{key = 'L', reformers = {'LAlt'}}}, down = iCommandViewLaserOnOff, name = 'Binocular laser illumination toggle', category = 'FAC'},
+--{combos = {{key = 'Z', reformers = {'LWin'}}}, down = iCommandViewIR		, name = 'Binocular view IR mode', category = 'FAC'},
 
 
 },

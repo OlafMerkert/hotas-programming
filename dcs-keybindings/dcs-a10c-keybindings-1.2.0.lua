@@ -4,11 +4,15 @@ return {
 keyCommands = {
 
 -- Temporary
+--{combos = {{key = 'X', reformers = {'LShift', 'LCtrl'}}}, down = iCommandViewExplosion, name = 'Explosion', category = 'Cheat'},
+
 {combos = {{key = 'Home', reformers = {'RWin'}}} , 	down = iCommandEnginesStart, name = 'Start Procedure', category = 'Cheat'},
 {combos = {{key = 'End', reformers = {'RWin'}}} , 	down = iCommandEnginesStop, name = 'Stop Procedure', category = 'Cheat'},
+--{combos = {{key = '`'}}, down = ICommandToggleConsole, name = 'Toggle Console', category = 'Debug'},
+{combos = {{key = 'Pause', reformers = {'LShift', 'LWin'}}}, down = iCommandActivePauseOnOff, name = 'Active Pause', category = 'Cheat'},
 
 -- Gameplay
-{combos = {{key = 'Pause', reformers = {'LShift', 'LWin'}}}, down = iCommandActivePauseOnOff, name = 'Active Pause', category = 'Cheat'},
+
 {combos = {{key = 'Esc'}}, 									down = iCommandQuit, name = 'End mission', category = 'General'},
 {combos = {{key = 'B', reformers = {'LAlt'}}},				down = iCommandViewBriefing, name = 'View briefing on/off', category = 'General'},
 
@@ -18,20 +22,21 @@ keyCommands = {
 {combos = {{key = 'Z', reformers = {'LShift'}}}, 			down = iCommandNoAcceleration, name = 'Time normal', category = 'General'},
 {combos = {{key = '\''}}, 									down = iCommandScoresWindowToggle, name = 'Score window', category = 'General'},
 {combos = {{key = '\'', reformers = {'RShift'}}}, 			down = iCommandDebriefing, name = 'Show debriefing window', category = 'General'},
+{combos = {{key = '\'', reformers = {'LAlt'}}}, 			down = iCommandMissionResourcesManagement, name = 'Rearming and Refueling Window', category = 'General'},
 {combos = {{key = 'Tab'}}, 									down = iCommandChat, name = 'Multiplayer chat - mode All', category = 'General'},
 {combos = {{key = 'Tab', reformers = {'RCtrl'}}}, 			down = iCommandFriendlyChat, name = 'Multiplayer chat - mode Allies', category = 'General'},
 {combos = {{key = 'Y', reformers = {'LCtrl'}}}, 			down = iCommandInfoOnOff, name = 'Info bar view toggle', category = 'General'},
 {combos = {{key = 'Tab', reformers = {'RCtrl', 'RShift'}}}, down = iCommandRecoverHuman, name = 'Get new plane - respawn', category = 'General'},
 {combos = {{key = 'SysRQ'}}, 								down = iCommandScreenShot, name = 'Screenshot', category = 'General'},
 {combos = {{key = 'Tab', reformers = {'LShift'}}}, 			down = iCommandTrkEsc, name = 'Playback track cancel', category = 'General'},
-{combos = {{key = 'Y', reformers = {'LShift'}}}, 			down = iCommandInfoOnOff, name = 'Info bar view toggle', category = 'General'},
 {combos = {{key = 'Pause', reformers = {'RShift'}}},		down = iCommandOneFrame, name = 'One frame mode', category = 'General'},
 {combos = {{key = 'Pause', reformers = {'RCtrl'}}}, 		down = iCommandGraphicsFrameRate, name = 'Frame rate counter - Service info', category = 'General'},
 {combos = {{key = 'Y', reformers = {'LAlt'}}}, 				down = iCommandViewCoordinatesInLinearUnits, name = 'Coordinates units change', category = 'General'},
 {combos = {{key = 'M', reformers = {'RCtrl'}}}, 			down = iCommandChat, name = 'Multiplayer chat - mode All', category = 'General'},
 {combos = {{key = 'M', reformers = {'RAlt'}}}, 				down = iCommandFriendlyChat, name = 'Multiplayer chat - mode Allies', category = 'General'},
 {combos = {{key = 'C', reformers = {'LAlt'}}}, 				down = iCommandCockpitClickModeOnOff, name = 'Clickable mouse cockpit mode On/Off', category = 'General'},
-{combos = {{key = 'Enter', reformers = {'RCtrl'}}}, 		down = iCommandPlane_ShowControls, name = 'Show controls indicator' , category = 'General'},
+{combos = {{key = 'Enter', reformers = {'RCtrl'}}}, 		down = iCommandPlane_ShowControls, name = 'Controls indicator' , category = 'General'},
+{combos = {{key = 'J', reformers = {'RAlt'}}}, down = iCommandPlaneJump, name = 'Jump into selected aircraft', category = 'General'},
 
 -- Sensors
 --{combos = {{key = 'R', reformers = {'RShift'}}}, down = iCommandChangeRWRMode, name = 'Change RWR/SPO Mode', category = 'Sensors'},
@@ -52,6 +57,7 @@ keyCommands = {
 {combos = {{key = '\\'}}, 						down = iCommandToggleCommandMenu, name = 'Communication menu', category = 'Communications'},
 {combos = {{key = '\\', reformers = {'LShift'}}}, down = ICommandSwitchDialog, name = 'Switch dialog', category = 'Communications'},
 {combos = {{key = '\\', reformers = {'LCtrl'}}}, down = ICommandSwitchToCommonDialog, name = 'Switch to main menu', category = 'Communications'},
+
 
 -- View                                                    
 {combos = {{key = 'Num4'}}, pressed = iCommandViewLeftSlow, up = iCommandViewStopSlow, name = 'View Left slow', category = 'View'},
@@ -141,8 +147,8 @@ keyCommands = {
 {combos = {{key = 'Num6', reformers = {'RAlt'}}}, 	down = iCommandViewCameraRightSlow, name = 'Camera view right slow', category = 'View Cockpit'},
 {combos = {{key = 'Num7', reformers = {'RAlt'}}}, 	down = iCommandViewCameraUpLeftSlow, name = 'Camera view up-left slow', category = 'View Cockpit'},
 {combos = {{key = 'Num1', reformers = {'RAlt'}}}, 	down = iCommandViewCameraDownLeftSlow, name = 'Camera view down-left slow', category = 'View Cockpit'},
-{combos = {{key = 'Num9', reformers = {'RAlt'}}}, 	down = iCommandViewCameraDownRight, name = 'Camera view up-right slow', category = 'View Cockpit'},
-{combos = {{key = 'Num3', reformers = {'RAlt'}}}, 	down = iCommandViewCameraUpRightSlow, name = 'Camera view down-right slow', category = 'View Cockpit'},
+{combos = {{key = 'Num9', reformers = {'RAlt'}}}, 	down = iCommandViewCameraDownRight, name = 'Camera view down-right slow', category = 'View Cockpit'},
+{combos = {{key = 'Num3', reformers = {'RAlt'}}}, 	down = iCommandViewCameraUpRightSlow, name = 'Camera view up-right slow', category = 'View Cockpit'},
 {combos = {{key = 'Num5', reformers = {'RShift'}}}, down = iCommandViewCameraCenter, name = 'Center camera view', category = 'View Cockpit'},
 {combos = {{key = 'Num5', reformers = {'RCtrl'}}}, 	down = iCommandViewCameraReturn, name = 'Return camera', category = 'View Cockpit'},
 {combos = {{key = 'Num5', reformers = {'RAlt'}}}, 	down = iCommandViewCameraBaseReturn, name = 'Return camera base', category = 'View Cockpit'},
@@ -164,7 +170,7 @@ keyCommands = {
 {combos = {{key = 'Num*', reformers = {'RShift'}}}, pressed = iCommandViewForward, up = iCommandViewForwardStop, name = 'Zoom in', category = 'View Cockpit'},
 {combos = {{key = 'Num/', reformers = {'RShift'}}}, pressed = iCommandViewBack, up = iCommandViewBackStop, name = 'Zoom out', category = 'View Cockpit'},
 
--- Cockpit Camera Motion
+-- Cockpit Camera Motion (������������ ������ � ������)
 {combos = {{key = 'Num8', reformers = {'RCtrl','RShift'}}}, pressed = iCommandViewPitCameraMoveUp, up = iCommandViewPitCameraMoveStop, name = 'Cockpit Camera Move Up', category = 'View Cockpit'},
 {combos = {{key = 'Num2', reformers = {'RCtrl','RShift'}}}, pressed = iCommandViewPitCameraMoveDown, up = iCommandViewPitCameraMoveStop, name = 'Cockpit Camera Move Down', category = 'View Cockpit'},
 {combos = {{key = 'Num4', reformers = {'RCtrl','RShift'}}}, pressed = iCommandViewPitCameraMoveLeft, up = iCommandViewPitCameraMoveStop, name = 'Cockpit Camera Move Left', category = 'View Cockpit'},
@@ -289,6 +295,8 @@ keyCommands = {
 {combos = {{key = 'W', reformers = {'LAlt'}}}, 		down = iCommandPlaneWheelBrakeRightOn, up = iCommandPlaneWheelBrakeRightOff, name = 'Wheel Brake Right On/Off', category = 'Systems'},
 {combos = {{key = 'W', reformers = {'RWin'}}}, 		down = iCommandPlaneEmergencyBrake, up = iCommandPlaneEmergencyBrake, name = 'Emergency Wheel Brake', category = 'Systems'},
 
+--{combos = {{key = 'R', reformers = {'RWin'}}},  	down = iCommandReloadTables, name = 'Reload Cockpit', category = 'Debug'},
+
 {down = iCommandAccelReset, up = iCommandAccelReset, name = 'G-meter reset', category = 'Systems'},
 {down = iCommandArmGroundSafetyCover,  name = 'Armament ground safety cover', category = 'Systems'},
 {down = iCommandArmGroundSafetySwitch,  name = 'Armament ground safety switch', category = 'Systems'},
@@ -301,7 +309,7 @@ keyCommands = {
 {combos = {{key = 'C', reformers = {'LCtrl'}}}, 	down = iCommandPlaneFonar, name = 'Canopy Open/Close', category = 'Systems'},
 {combos = {{key = 'E', reformers = {'LCtrl'}}}, 	down = iCommandPlaneEject, name = 'Eject', category = 'Systems'},
 {combos = {{key = 'L'}}, 							down = iCommandPlaneCockpitIllumination, name = 'Cockpit Illumination', category = 'Systems'},
-{combos = {{key = 'L', reformers = {'RAlt'}}}, 		down = iCommandPlaneHeadLightOnOff, name = 'Gear Light Near/Far/Off', category = 'Systems'},
+
 {combos = {{key = 'L', reformers = {'RCtrl'}}}, 	down = iCommandPlaneLightsOnOff, name = 'Navigation lights', category = 'Systems'},
 {combos = {{key = 'T', reformers = {'LShift'}}}, 	down = iCommandPlaneWingtipSmokeOnOff, name = 'Smoke', category = 'Systems'},
 -- {combos = {{key = 'N', reformers = {'RShift'}}}, 	down = iCommandPlaneResetMasterWarning, name = 'Reset Current Audible Warning', category = 'Systems'},
@@ -344,10 +352,10 @@ keyCommands = {
 {down = iCommandPlane_R_ENG_OPER_Ign 		, up = iCommandPlane_R_ENG_OPER_Norm	, name = 'Right Engine Oper Ign / Norm'			, category = 'Engine Control Panel'},
 {down = iCommandPlane_R_ENG_OPER_Motor												, name = 'Right Engine Oper Motor'				, category = 'Engine Control Panel'},
 {down = iCommandPlane_R_ENG_OPER_Norm												, name = 'Right Engine Oper Norm'				, category = 'Engine Control Panel'},
-{down = iCommandPlane_L_ENG_FUEL_FLOW_Norm											, name = 'Left Engine Fuel Flow Norm/Override'	, category = 'Engine Control Panel'},
-{down = iCommandPlane_L_ENG_FUEL_FLOW_Override										, name = 'Left Engine Fuel Flow Norm/Override'	, category = 'Engine Control Panel'},
-{down = iCommandPlane_R_ENG_FUEL_FLOW_Norm											, name = 'Right Engine Fuel Flow Norm/Override'	, category = 'Engine Control Panel'},
-{down = iCommandPlane_R_ENG_FUEL_FLOW_Override										, name = 'Right Engine Fuel Flow Norm/Override'	, category = 'Engine Control Panel'},
+{down = iCommandPlane_L_ENG_FUEL_FLOW_Norm											, name = 'Left Engine Fuel Flow Norm'			, category = 'Engine Control Panel'},
+{down = iCommandPlane_L_ENG_FUEL_FLOW_Override										, name = 'Left Engine Fuel Flow Override'		, category = 'Engine Control Panel'},
+{down = iCommandPlane_R_ENG_FUEL_FLOW_Norm											, name = 'Right Engine Fuel Flow Norm'			, category = 'Engine Control Panel'},
+{down = iCommandPlane_R_ENG_FUEL_FLOW_Override										, name = 'Right Engine Fuel Flow Override'		, category = 'Engine Control Panel'},
 {pressed = iCommandPlaneThrottleFrictionDec											, name = 'Throttle Friction Decrease'			, category = 'Engine Control Panel'},
 {pressed = iCommandPlaneThrottleFrictionInc											, name = 'Throttle Friction Increase'			, category = 'Engine Control Panel'},
 
@@ -358,9 +366,9 @@ keyCommands = {
 {combos = {{key = 'H', reformers = {'RShift','RAlt'}}} , pressed = iCommandPlane_Helmet_Brightess_Down, name = 'Gain goggles down', category = 'Sensors'},
 
 --FAC
-{combos = {{key = 'B', reformers = {'LWin'}}}, down = iCommandViewBinocular , name = 'Binocular view toggle', category = 'FAC'},
-{combos = {{key = 'L', reformers = {'LAlt'}}}, down = iCommandViewLaserOnOff, name = 'Binocular laser illumination toggle', category = 'FAC'},
-{combos = {{key = 'Z', reformers = {'LWin'}}}, down = iCommandViewIR		, name = 'Binocular view IR mode', category = 'FAC'},
+--{combos = {{key = 'B', reformers = {'LWin'}}}, down = iCommandViewBinocular , name = 'Binocular view toggle', category = 'FAC'},
+--{combos = {{key = 'L', reformers = {'LAlt'}}}, down = iCommandViewLaserOnOff, name = 'Binocular laser illumination toggle', category = 'FAC'},
+--{combos = {{key = 'Z', reformers = {'LWin'}}}, down = iCommandViewIR		, name = 'Binocular view IR mode', category = 'FAC'},
 
 -- Left MFCD
 {down = iCommandPlaneLeftMFD_OSB1 , up = iCommandPlaneLeftMFD_OSB1_Off,  name = 'Left MFCD OSB 01', category = 'Left MFCD'},
