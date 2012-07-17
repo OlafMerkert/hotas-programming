@@ -77,11 +77,41 @@
     (command-table-tex tex-file aircraft all)
     (dbug "tex generated")))
 
+(defun string-capitalize+ (string)
+  "Enhance STRING-CAPITALIZE and also capitalize after numbers."
+  (let ((string+ (string-capitalize string)))
+    ;; find all numbers
+    (do ((next-num
+          (position-if #'digit-char-p string+)
+          (position-if #'digit-char-p string+ :start (+ next-num 1))))
+        ((not next-num))
+      (setf string+
+            (string-capitalize string+ :start (+ next-num 1))))
+    string+))
 
-(defun samples (&optional all)
-  (load-lua-generate-tex #P"a-10-v1121-default.lua" "A-10C 1.1.2.1 Default" all)
-  (load-lua-generate-tex #P"ka-50-v1111-default.lua" "Ka-50 1.1.1.1 Default" all)
-  (load-lua-generate-tex #P"p-51-v1121-default.lua" "P-51D 1.1.2.1 Default" all))
+
+(defun symbol->name (mod)
+  "take the string representation of a symbol and capitalize."
+  (string-capitalize+ (symbol-name mod)))
+
+(defun symbol->filename (mod)
+  "take the string representation of a symbol, remove - and space and
+  lowercase."
+  (string-downcase (remove #\Space (remove #\- (symbol-name mod)))))
+
+(defun samples (version &optional all)
+  (dolist (module '(a-10c
+                    ka-50
+                    p-51d
+                    su-25t
+                    combined\ arms
+                    aircraft\ base
+                    ))
+    (load-lua-generate-tex (format nil "dcs-~A-keybindings-~A.lua"
+                                   (symbol->filename module) version)
+                           (format nil "~A ~A Default"
+                                   (symbol->name module) version)
+                           all)))
 
 (defun custom ()
   (load-lua-generate-tex #P"a-10c keyboard/Keyboard.lua" "A-10C Customised"))
