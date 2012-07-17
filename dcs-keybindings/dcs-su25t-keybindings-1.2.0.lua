@@ -1,5 +1,4 @@
-local res = external_profile("Config/Input/Aircrafts/base_keyboard_binding.lua")
-join(res.keyCommands,{
+keyCommands = {
 
 -- Autopilot
 {combos = {{key = 'A'}}, down = iCommandPlaneAutopilot, name = 'Autopilot', category = 'Autopilot'},
@@ -68,5 +67,4 @@ join(res.keyCommands,{
 
 -- Countermeasures
 {combos = {{key = 'E', reformers = {'LShift'}}}, down = iCommandActiveIRJamming, name = 'IR Jamming', category = 'Countermeasures'},
-})
-return res
+}

@@ -1,13 +1,13 @@
 (in-package #:dcs-commands)
 
-(defparameter lua-files-dir #P"/home/olaf/Projekte/hotas-programming/")
+(defparameter lua-files-dir #P"/home/olaf/Projekte/hotas-programming/dcs-keybindings/")
 
 (defvar *last-config* nil)
 
 (defun load-config (file)
   (setf *last-config*
    (with-open-file (stream file)
-     (parse-lua-stream-to-lisp stream))))
+     (list (parse-lua-stream-to-lisp stream)))))
 
 (defmacro defconfun (name args &body body)
   `(defun ,name (,@args

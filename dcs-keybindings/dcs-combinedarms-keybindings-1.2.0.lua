@@ -1,4 +1,3 @@
-return {
 keyCommands = {
 {combos = {{key = 'Space'}},down = iCommandPlaneFire,up = iCommandPlaneFireOff, name = 'Fire Selected Weapon',category = 'Ground unit'},
 {combos = {{key = 'Q'}}, down = iCommandGChangeWS, name = 'Select Turret',category = 'Ground unit'},
@@ -25,7 +24,4 @@ keyCommands = {
 
 -- JTAC
 {combos = {{key = 'B'}}, down = iCommandViewBinocular, name = 'Binocular view toggle', category = 'Ground unit'},
-},
-
 }
-

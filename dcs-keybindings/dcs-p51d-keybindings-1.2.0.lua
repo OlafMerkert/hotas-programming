@@ -1,6 +1,3 @@
-function layout()
-return {
-
 keyCommands = {
 
 -- Temporary
@@ -513,6 +510,4 @@ keyCommands = {
 --{combos = {{key = 'Z', reformers = {'LWin'}}}, down = iCommandViewIR		, name = 'Binocular view IR mode', category = 'FAC'},
 
 
-},
 }
-end
