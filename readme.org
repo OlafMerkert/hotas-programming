@@ -1,0 +1,14 @@
+* Parsing Keyboard command settings for DCS
+
+Currently, the code is working with keycommand files from DCS World 1.2.0, however due to some differences between the various aircraft,
+one has to strip (or comment) some lines at the beginning and end of the file.
+~load-config~ expects only a ~keyCommands = { ... }~ assignments at
+the top level.  Also, there may be problems with (russian?) unicode characters,
+even if those are commented out.
+
+* Generating LaTeX tables with keybindings
+
+If you want to generate your own PDF tables, have a look in the
+~command-table-tex.lisp~ file.  The ~samples~ function is used to
+generate the default keybinding LaTeX files, by invoking
+~load-lua-generate-tex~.
